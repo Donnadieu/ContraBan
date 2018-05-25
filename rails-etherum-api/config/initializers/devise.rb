@@ -8,7 +8,8 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'f4e4b886bbe8c8c982cb39620bb955a73bcf4b955b91ec149377a573bdcdbbd5ad2a9a82773b6d7a1d83b9f07de0e8136cfe260449e3bf2c14aa80c8b8be75bb'
+  # config.secret_key = 'f1ef06500346634f0e5ab27d1efc98eb5c8e66a92aa8b5df24fbfdbbbf6d6ef8e0c52151a5c639194411ff3cc5b1252f1f2a7022059e1a6a53159cfdc7c1dd3e'
+  
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
@@ -87,7 +88,7 @@ Devise.setup do |config|
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing skip: :sessions to `devise_for` in your config/routes.rb
-  config.skip_session_storage = [:http_auth, :params_auth]
+  config.skip_session_storage = [:http_auth]
 
   # By default, Devise cleans up the CSRF token on authentication to
   # avoid CSRF token fixation attacks. This means that, when using AJAX
@@ -113,7 +114,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '156af0a8d29d4c6212994514b570f54a33c3b581316933d469190e66290805332e6459cfd61b593d7167f98a46ad4a115af87665e8c0d0c200adc61cc1853269'
+  # config.pepper = 'dad5a4b4af2dd9644e2439a34705e08695e2981cc99ef860ded909f22b29b6b3353d607e72ffe605fb82caca5db9d942a9d39ee53209d2515b935b8b58fbb2e7'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -265,7 +266,7 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
-  config.navigational_formats = []
+
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
   # is mountable, there are some extra configurations to be taken into account.
