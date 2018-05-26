@@ -1,6 +1,6 @@
-class V1::RegistrationsController < Devise::RegistrationsController
+class Api::RegistrationsController < Devise::RegistrationsController
   acts_as_token_authentication_handler_for User, fallback: :exception, except: [:create]
-  
+
   def create
     @user = User.new(user_params)
 
