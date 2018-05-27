@@ -5,7 +5,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
     @user = User.new(user_params)
 
     if @user.save
-      render json: @user, status: :created
+      render json: @user.as_json(only: [:email, :authentication_token]), status: :created
       return
     else
       warden.custom_failure!
@@ -17,6 +17,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
   private
 
     def user_params
+      # {"user": {"email": "hello@email.com", "password": "12345678"} }
       params.require(:user).permit(:email, :password)
     end
 end
