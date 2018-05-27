@@ -17,7 +17,7 @@ class Api::RegistrationsController < ApplicationController
   def update
     if @user.id === params[:id].to_i
       if @user.update(user_params)
-        render json: @user.as_json(only: [:id, :email, :authentication_token]), status: :created
+        render json: @user.as_json(only: [:id, :email, :authentication_token])
         return
       else
         warden.custom_failure!
