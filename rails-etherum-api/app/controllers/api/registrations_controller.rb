@@ -14,11 +14,25 @@ class Api::RegistrationsController < ApplicationController
     end
   end
 
+  def update
+    if @user.id === params[:id].to_i
+      if @user.update(user_params)
+        render json: @user.as_json(only: [:id, :email, :authentication_token]), status: :created
+        return
+      else
+        warden.custom_failure!
+        render json: @user.errors, status: :unprocessable_entity
+      end
+    else
+      render json:{ message: "Unable to perform the action"}
+    end
+  end
+
   def delete
-    if @user.id === params[:id]
+    if @user.id === params[:id].to_i
       @user.destroy
     else
-      render json:{ message: "Could not perform the action"}
+      render json:{ message: "Unable to perform the action"}
     end
   end
 
