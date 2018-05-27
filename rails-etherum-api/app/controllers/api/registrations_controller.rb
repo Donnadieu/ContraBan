@@ -24,7 +24,7 @@ class Api::RegistrationsController < ApplicationController
         render json: @user.errors, status: :unprocessable_entity
       end
     else
-      render json:{ message: "Unable to perform the action"}
+      render json:{ message: "Unable to perform this action"}, status: 401
     end
   end
 
@@ -32,7 +32,7 @@ class Api::RegistrationsController < ApplicationController
     if @user.id === params[:id].to_i
       @user.destroy
     else
-      render json:{ message: "Unable to perform the action"}
+      render json:{ message: "Unable to perform this action"}, status: 401
     end
   end
 
