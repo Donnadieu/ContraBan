@@ -1,11 +1,12 @@
-class Api::SessionsController < Devise::SessionsController
+class Api::SessionsController < ApplicationController
   acts_as_token_authentication_handler_for User, except: [:create]
-  before_action :set_user
 
   def create
+    @user = User.find_by(email: params[:user][:email])
+
     if @user&.valid_password?(params[:user][:password])
       renew_authentication_token!
-      render json: @user.as_json(only: [:email, :authentication_token]), status: 200
+      render json: @user.as_json(only: [:id, :email, :authentication_token]), status: 200
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -16,11 +17,6 @@ class Api::SessionsController < Devise::SessionsController
   end
 
   private
-
-    def set_user
-      @user = User.find_by(email: params[:user][:email])
-    end
-
     def renew_authentication_token!
       @user.authentication_token = nil
       @user.save
