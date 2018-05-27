@@ -24,6 +24,7 @@ gem 'dotenv-rails'
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0'
 gem "attr_encrypted", "~> 3.0.0"
+gem 'omniauth'
 gem 'omniauth-facebook'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
