@@ -3,30 +3,36 @@ import {Field, reduxForm} from 'redux-form';
 
 class LoginForm extends Component {
   render(){
-    const { handleOnSubmit } = this.props
+    const { handleSubmit } = props
 
     return(
-      <form onSubmit={handleOnSubmit}>
-        <Field
-          name="email"
-          component="input"
-          type="text"
-          placeholder="Email"
-        />
-        <Field
-          name="password"
-          component="input"
-          type="password"
-          placeholder="Password"
-        />
-        <button type="submit" label="submit">Submit</button>
+      <form onSubmit={handleSubmit}>
+        <label>Email</label>
+        <div>
+          <Field
+            name="email"
+            component="input"
+            type="text"
+            placeholder="Email"
+          />
+        </div>
+        <label>Password</label>
+        <div>
+          <Field
+            name="password"
+            component="input"
+            type="password"
+            placeholder="Password"
+          />
+        </div>
+        <div>
+          <button type="submit">Log In</button>
+        </div>
       </form>
     )
   }
 }
 
-LoginForm = reduxForm ({
-  form: 'login',
-}) (LoginForm);
-
-export default LoginForm
+export default reduxForm({
+  form: 'login' // a unique identifier for this form
+})(LoginForm)
