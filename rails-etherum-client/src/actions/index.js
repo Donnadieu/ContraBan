@@ -3,6 +3,6 @@ export function login(values) {
     method: "POST"
   })
   .then(response => {
-    debugger
+    console.log(response.json());
   })
 }

@@ -1,27 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
-import {createStore, combineReducers} from 'redux'
-import {reducer as formReducer} from 'redux-form';
-import './index.css';
-import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
 
-const reducers = {
-  form: formReducer
-}
-
-const reducer = combineReducers(reducers)
-
-let store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__ ()
-)
+import './index.css'
+import App from './containers/App'
+import registerServiceWorker from './registerServiceWorker'
+import store from './store.js'
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App store={store}/>
   </Provider>,
   document.getElementById('root')
   );
 registerServiceWorker();
+
+// var store = {
+//   currentUser: {
+//     id: 'id',
+//     email: 'email',
+//     auth_token: 'token',
+//     has_login_credentials: false
+//     contracts: []
+//   }
+// }
