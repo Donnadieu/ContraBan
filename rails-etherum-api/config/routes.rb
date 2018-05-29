@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, skip: [:sessions, :registrations, :passwords]
 
   namespace :api, defaults: { format: :json } do
-    get '/users', to: "users#index"
+    get '/users/:id', to: "users#show"
 
     devise_scope :user do
       # get    'users/auth/facebook/:id',           to:  'omniauth_callbacks#passthru'
