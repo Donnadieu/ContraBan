@@ -3,7 +3,7 @@ import {Field, reduxForm} from 'redux-form';
 
 class LoginForm extends Component {
   render(){
-    const { handleSubmit } = props
+    const { handleSubmit } = this.props
 
     return(
       <form onSubmit={handleSubmit}>
