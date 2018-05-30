@@ -7,11 +7,16 @@ export function loginUser(values) {
       method: "POST"
     })
       .then(res => {
-        return res
-      }).then(responseJson => {
+        if (res.status === 200) {
+          return res.json()
+        } else {
+          return res.status
+        }
+      })
+      .then(responseJson => {
         dispatch({
-          type: 'LOGIN_USER',
-           payload: responseJson
+          type: 'USER_LOGIN',
+          payload: responseJson
          })
     })
   }
