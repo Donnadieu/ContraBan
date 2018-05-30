@@ -7,6 +7,8 @@ const LoginForm = ({ handleSubmit }) => {
   return(
     <form onSubmit={ handleSubmit }>
       <div>
+        <label><strong>Email</strong></label>
+        <br></br>
         <Field
           name="email"
           component="input"
@@ -15,6 +17,8 @@ const LoginForm = ({ handleSubmit }) => {
         />
       </div>
       <div>
+        <label><strong>Password</strong></label>
+        <br></br>
         <Field
           name="password"
           component="input"

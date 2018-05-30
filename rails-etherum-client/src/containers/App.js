@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import LoginForm from '../components/LoginForm'
@@ -8,9 +9,13 @@ class App extends Component {
 
   render() {
     return (
+    <Router>
       <div className="App">
-        <LoginForm/>
+         <NavLink style={{ marginRight: '10px' }} to="/">Home</NavLink>
+        <Route exact path="/" component={LoginForm} />
       </div>
+    </Router>
+
     );
   }
 }
