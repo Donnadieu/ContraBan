@@ -1,9 +1,11 @@
-import React, {Component} from 'react';
-import {Field, reduxForm} from 'redux-form';
+import React from 'react';
+import { Field, reduxForm } from 'redux-form'
+import { loginUser } from '../actions/loginForm'
+import { connect } from 'react-redux'
 
 const LoginForm = ({ handleSubmit }) => {
   return(
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={ handleSubmit }>
       <div>
         <Field
           name="email"
@@ -16,7 +18,6 @@ const LoginForm = ({ handleSubmit }) => {
         <Field
           name="password"
           component="input"
-          name="search"
           type="password"
           placeholder="Password"
         />
@@ -26,4 +27,12 @@ const LoginForm = ({ handleSubmit }) => {
   )
 }
 
-export default reduxForm({ form: 'LoginForm' })(LoginForm)
+const onSubmit = (values, dispatch) => {
+  dispatch(loginUser(values))
+};
+
+
+export default connect()(reduxForm({
+  form: 'userReducer',
+  onSubmit,
+})(LoginForm));
