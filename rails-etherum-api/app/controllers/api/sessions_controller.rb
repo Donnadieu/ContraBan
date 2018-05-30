@@ -8,7 +8,7 @@ class Api::SessionsController < ApplicationController
       renew_authentication_token!
       render json: @user.as_json(only: [:id, :email, :authentication_token]), status: 200
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: @user.errors, status: 401
     end
   end
 
