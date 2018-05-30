@@ -1,10 +1,12 @@
-export default (state = [], action) => {
+export default (state = {is_authenticated: false}, action) => {
   switch ( action.type ) {
     case "USER_LOGIN":
       if (action.payload.currentUser) {
-        console.log(action.payload.currentUser);
-        const currentUser = Object.assign({}, action.payload.currentUser);
+        const currentUser = Object.assign({}, action.payload.currentUser, )
+        debugger
         return [ ...state, currentUser ];
+      }else {
+        return state
       }
       break
     default:
@@ -19,8 +21,9 @@ export default (state = [], action) => {
 //       ]
 //     }
 //     contracts: [
-//       {id: 'dgvfhsdvbfjbsd5454'},
-//       {id: 'dknvkldcnv23545363'},
+//       {id: 'dgvfhsdvbfjbsd5454' ..., history: [{date: '', price: '', owner},...]},
+//       {id: 'dknvkldcnv23545363'..., history: [{date: '', price: '', owner},...]},
+//       {id: 'jadfbajsbfja45646'...}
 //     ]
 //   }
 // ]
