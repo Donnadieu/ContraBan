@@ -11,7 +11,7 @@ class Api::RegistrationsController < ApplicationController
         return
       else
         warden.custom_failure!
-        render json: @user.errors, status: :unprocessable_entity
+        render json: @user.errors, status: 201
       end
     else
       render json:{ errors: "Password can't be blank"}, status: :unprocessable_entity
