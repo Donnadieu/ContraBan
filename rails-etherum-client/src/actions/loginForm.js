@@ -13,11 +13,20 @@ export function loginUser(values) {
           return res.status
         }
       })
-      .then(responseJson => {
-        dispatch({
-          type: 'USER_LOGIN',
-          payload: responseJson
-         })
+      .then(loginResponseJson => {
+        if (loginResponseJson === 401) {
+          let loginAttempt = {status: loginResponseJson};
+          dispatch({
+            type: 'USER_LOGIN',
+            payload: loginAttempt
+           })
+        } else {
+          let user = {currentUser: loginResponseJson}
+          dispatch({
+            type: 'USER_LOGIN',
+            payload: user
+           })
+        }
     })
   }
 }
