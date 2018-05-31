@@ -13,8 +13,8 @@ export const getRoutes = (store) =>{
   const state = store.getState();
   return(
     <div>
-      <Route exact path="/" render={() => (state.currentUser.is_authenticated ? (<Redirect to="/"/>) : (<Redirect to="/login"/>))}/>
-      <Route path="/login" component={LoginForm}/>
+      <Route exact path="/" />
+        <Route path="/login" component={LoginForm}/>
     </div>
   )
 }

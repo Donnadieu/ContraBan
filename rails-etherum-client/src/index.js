@@ -11,14 +11,14 @@ import {Provider} from 'react-redux'
 
 import './index.css'
 import registerServiceWorker from './registerServiceWorker'
-import store from './store.js';
-import {getRoutes} from './containers/getRoutes'
 import history from './history'
+import App from './containers/App'
+import { persistor, store } from './store';
 
 ReactDOM.render(
   <Provider store={ store }>
     <Router history = {history}>
-      { getRoutes(store) }
+      <App store={store} persistor={persistor} />
     </Router>
   </Provider>,
    document.getElementById('root')

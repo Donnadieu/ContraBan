@@ -6,16 +6,27 @@ import{
 import thunk from 'redux-thunk'
 import userReducer from './reducers/userReducer';
 import {reducer as formReducer} from 'redux-form';
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
+
+const persistConfig = {
+  key: 'root',
+  storage: storage,
+}
 
 const reducers = combineReducers({
   currentUser: userReducer,
-  form: formReducer
+  form: formReducer,
 })
+
+const persistedReducer = persistReducer(persistConfig, reducers)
 
 const middleware = [thunk]
 
-export default createStore(
-  reducers,
+export const store = createStore(
+  persistedReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(...middleware),
 )
+export const persistor = persistStore(store);

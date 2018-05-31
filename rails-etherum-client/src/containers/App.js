@@ -1,9 +1,10 @@
 import React from 'react'
 import './App.css';
+import {getRoutes} from '../containers/getRoutes'
 
 const App = (props) =>
     <div className="App">
-      <h1>Welcome to my app</h1>
+      { getRoutes(props.store) }
     </div>
 
 export default App;
