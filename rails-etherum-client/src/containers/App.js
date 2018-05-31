@@ -1,27 +1,9 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from "react-router-dom"
-import React, { Component } from 'react'
-// import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
-import LoginForm from '../components/LoginForm'
+import React from 'react'
 import './App.css';
 
-class App extends Component {
-
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <Route path="/" component={LoginForm} />
-        </div>
-      </Router>
-    );
-  }
-}
+const App = (props) =>
+    <div className="App">
+      <h1>Welcome to my app</h1>
+    </div>
 
 export default App;
