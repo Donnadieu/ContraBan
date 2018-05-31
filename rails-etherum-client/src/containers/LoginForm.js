@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 const LoginForm = ({ handleSubmit }) => {
   return(
-    <div>
+    <div align="center">
       <h1>Please Login</h1>
       <form onSubmit={ handleSubmit }>
         <div>

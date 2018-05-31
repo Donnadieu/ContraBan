@@ -10,10 +10,10 @@ import App from './App'
 import LoginForm from './LoginForm'
 
 export const getRoutes = (store) =>{
-  console.log(store.getState());
+  const state = store.getState();
   return(
     <div>
-      <Route path="/" component={App}/>
+      <Route exact path="/" render={() => (state.currentUser.is_authenticated ? (<Redirect to="/"/>) : (<Redirect to="/login"/>))}/>
       <Route path="/login" component={LoginForm}/>
     </div>
   )
