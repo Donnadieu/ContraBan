@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import history from '../history'
 
 export function loginUser(values) {
   return function(dispatch){
@@ -26,6 +27,7 @@ export function loginUser(values) {
             type: 'USER_LOGIN',
             payload: currentUser
            })
+           history.push("/dashboard")
         }
     })
   }

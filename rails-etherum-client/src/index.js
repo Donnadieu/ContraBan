@@ -1,5 +1,5 @@
 import {
-  BrowserRouter as Router,
+  Router,
   Route,
   Link,
   Redirect,
@@ -13,10 +13,11 @@ import './index.css'
 import registerServiceWorker from './registerServiceWorker'
 import store from './store.js';
 import {getRoutes} from './containers/getRoutes'
+import history from './history'
 
 ReactDOM.render(
   <Provider store={ store }>
-    <Router>
+    <Router history = {history}>
       { getRoutes(store) }
     </Router>
   </Provider>,
