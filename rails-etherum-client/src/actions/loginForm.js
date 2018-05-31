@@ -14,17 +14,17 @@ export function loginUser(values) {
         }
       })
       .then(loginResponseJson => {
-        if (loginResponseJson === 401) {
-          let loginAttempt = {status: loginResponseJson};
+        if (Number.isInteger(loginResponseJson)) {
+          let loginAttempt = { status: loginResponseJson, is_authenticated: false };
           dispatch({
             type: 'USER_LOGIN',
             payload: loginAttempt
            })
         } else {
-          let user = {currentUser: loginResponseJson}
+          let currentUser = Object.assign({}, loginResponseJson, {is_authenticated: true})
           dispatch({
             type: 'USER_LOGIN',
-            payload: user
+            payload: currentUser
            })
         }
     })
