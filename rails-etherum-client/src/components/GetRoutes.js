@@ -16,12 +16,16 @@ export const GetRoutes = ({currentUser}) =>{
       return (
         <div>
           <Redirect from="/" to="/dashboard"/>
-          <Route path="/dashboard" component={() => <h1>{currentUser.email}</h1>} />
+          <Redirect from="/login" to="/dashboard"/>
+          <Redirect from="/signup" to="/dashboard"/>
+          <Route exact path="/dashboard" component={() => <h1>{currentUser.email}</h1>} />
         </div>
       )
     } else {
       return (
-        <Route exact path="/login" component={LoginForm} />
+        <div>
+          <Route exact path="/login" component={LoginForm} />
+        </div>
       )
     }
   }

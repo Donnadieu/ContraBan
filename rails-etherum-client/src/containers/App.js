@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import './App.css';
-import {GetRoutes} from '../containers/GetRoutes'
+import {GetRoutes} from '../components/GetRoutes'
+import NavBar from '../components/NavBar';
 
 class App extends Component {
   render() {
     return(
       <div className="App">
+        <NavBar/>
         <GetRoutes currentUser={this.props.currentUser}/>
       </div>
     )

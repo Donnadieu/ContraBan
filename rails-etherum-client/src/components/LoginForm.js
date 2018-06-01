@@ -44,6 +44,6 @@ const onSubmit = (values, dispatch) => {
 
 
 export default connect()(reduxForm({
-  form: 'userReducer',
+  loginForm: 'userReducer',
   onSubmit,
 })(LoginForm));
