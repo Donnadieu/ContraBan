@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form'
-import { loginUser } from '../actions/loginForm'
+import { loginUser } from '../actions/actionCreators'
 import { connect } from 'react-redux'
 
 const LoginForm = ({ handleSubmit }) => {
