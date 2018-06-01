@@ -32,3 +32,9 @@ export function loginUser(values) {
     })
   }
 }
+
+export function logoutUser(dispatch){
+  dispatch({
+    type: 'USER_LOGOUT'
+   })
+}

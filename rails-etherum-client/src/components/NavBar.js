@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
+import { logoutUser } from '../actions/actionCreators'
 
 const NavBar = () => {
   return (
@@ -13,8 +14,7 @@ const NavBar = () => {
       </NavLink>
       <NavLink
         style={{ marginRight: '10px' }}
-        to="/logout"
-        onClick={}
+        to="/"
       >
         Log Out
       </NavLink>
@@ -22,4 +22,13 @@ const NavBar = () => {
   );
 }
 
-export default NavBar;
+function mapDispatchToProps(dispatch) {
+  debugger
+  return({
+      handleClick: () => {
+        dispatch(logoutUser())
+      }
+  })
+}
+
+export default connect(mapDispatchToProps)(NavBar)

@@ -7,7 +7,9 @@ export default (state = {is_authenticated: false}, action) => {
       }else {
         return state
       }
-      break
+    case 'USER_LOGOUT':
+      console.log("Im logging out");
+      break;
     default:
       return state
   }
