@@ -6,9 +6,11 @@ import {
   Switch
 } from "react-router-dom"
 import React from 'react'
+import { connect } from 'react-redux';
 import LoginForm from './LoginForm'
+import { withRouter } from 'react-router-dom'
 
-export const GetRoutes = ({currentUser}) =>{
+const GetRoutes = ({currentUser}) =>{
   const userLoggedIn = currentUser.is_authenticated
   const authRoutes = () => {
     console.log(userLoggedIn);
@@ -25,6 +27,7 @@ export const GetRoutes = ({currentUser}) =>{
       return (
         <div>
           <Route exact path="/login" component={LoginForm} />
+          <Redirect from="/dashboard" to="/login"/>
         </div>
       )
     }
@@ -35,3 +38,5 @@ export const GetRoutes = ({currentUser}) =>{
     </div>
   )
 }
+
+export default withRouter(connect()(GetRoutes))

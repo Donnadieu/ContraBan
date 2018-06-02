@@ -33,8 +33,9 @@ export function loginUser(values) {
   }
 }
 
-export function logoutUser(dispatch){
-  dispatch({
-    type: 'USER_LOGOUT'
-   })
+export function logoutUser(currentUser){
+  return{
+    type: 'USER_LOGOUT',
+    currentUser
+   }
 }

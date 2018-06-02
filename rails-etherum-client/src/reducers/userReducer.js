@@ -8,7 +8,9 @@ export default (state = {is_authenticated: false}, action) => {
         return state
       }
     case 'USER_LOGOUT':
-      console.log("Im logging out");
+      const currentUser = Object.assign({}, {is_authenticated: false})
+      return Object.assign({}, currentUser)
+    debugger
       break;
     default:
       return state

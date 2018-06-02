@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form'
 import { loginUser } from '../actions/actionCreators'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 const LoginForm = ({ handleSubmit }) => {
   return(
@@ -42,8 +43,7 @@ const onSubmit = (values, dispatch) => {
   dispatch(loginUser(values))
 };
 
-
-export default connect()(reduxForm({
-  loginForm: 'userReducer',
+export default withRouter(connect()(reduxForm({
+  form: 'userReducer',
   onSubmit,
-})(LoginForm));
+})(LoginForm)))

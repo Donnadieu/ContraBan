@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import './App.css';
-import {GetRoutes} from '../components/GetRoutes'
+import GetRoutes from '../components/GetRoutes'
 import NavBar from '../components/NavBar';
+import { withRouter } from 'react-router-dom'
 
 class App extends Component {
   render() {
@@ -21,4 +22,4 @@ const mapStateToProps = function(state){
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default withRouter(connect(mapStateToProps)(App))
