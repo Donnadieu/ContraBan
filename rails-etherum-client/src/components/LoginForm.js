@@ -4,11 +4,14 @@ import { loginUser } from '../actions/actionCreators'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-const LoginForm = ({ handleSubmit }) => {
+const LoginForm = ({ values, handleSubmit, dispatch }) => {
+  const submitInfo = (values) => {
+    dispatch(loginUser(values))
+  };
   return(
     <div align="center">
       <h1>Please Login</h1>
-      <form onSubmit={ handleSubmit }>
+        <form onSubmit={handleSubmit(submitInfo)}>
         <div>
           <label><strong>Email</strong></label>
           <br></br>
@@ -33,17 +36,11 @@ const LoginForm = ({ handleSubmit }) => {
         <button type="submit" label="submit">Login</button>
       </form>
     </div>
-
-
-
   )
 }
 
-const onSubmit = (values, dispatch) => {
-  dispatch(loginUser(values))
-};
 
 export default withRouter(connect()(reduxForm({
-  form: 'userReducer',
-  onSubmit,
+  form: 'LoginForm',
+  loginUser
 })(LoginForm)))
