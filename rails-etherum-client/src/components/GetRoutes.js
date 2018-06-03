@@ -17,12 +17,14 @@ const GetRoutes = ({currentUser}) =>{
     if (userLoggedIn) {
       return (
         <div>
+          <Redirect to="/dashboard"/>
           <Route exact path="/dashboard" render={() => <h1>{currentUser.email}</h1>} />
         </div>
       )
     } else {
       return (
         <div>
+          <Redirect to="/login"/>
           <Route exact path="/login" component={Form} />
           <Route exact path="/signup" component={Form} />
         </div>
