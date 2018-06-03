@@ -79,27 +79,27 @@ export const signupUser = (values) => {
       }),
     })
       .then(res => {
-        if (res.status === 200) {
+        if (res.status === 201) {
           return res.json()
         } else {
           return res.status
         }
       })
-      .then(loginResponseJson => {
-        if (Number.isInteger(loginResponseJson)) {
-          let loginAttempt = { status: loginResponseJson, is_authenticated: false };
+      .then(signupResponse => {
+        if (Number.isInteger(signupResponse)) {
+          let signupAttempt = { status: signupResponse, is_authenticated: false };
           dispatch({
-            type: 'USER_LOGIN',
-            payload: loginAttempt
+            type: 'USER_SIGNUP',
+            payload: signupAttempt
            })
         } else {
-          let currentUser = Object.assign({}, loginResponseJson, {is_authenticated: true})
+          let currentUser = Object.assign({}, signupResponse, {is_authenticated: true})
           dispatch({
-            type: 'USER_LOGIN',
+            type: 'USER_SIGNUP',
             payload: currentUser
            })
-           history.push("/")
         }
+        history.push("/dashboard")
     })
   }
 }

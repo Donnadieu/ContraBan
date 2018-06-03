@@ -1,5 +1,6 @@
 export default (state = {is_authenticated: false}, action) => {
   switch ( action.type ) {
+    
     case 'USER_LOGIN':
       if (action.payload.is_authenticated === true) {
         const currentUser = Object.assign({}, action.payload)
@@ -7,9 +8,19 @@ export default (state = {is_authenticated: false}, action) => {
       }else {
         return state
       }
+
     case 'USER_LOGOUT':
       const currentUser = Object.assign({}, {is_authenticated: false})
       return Object.assign({}, currentUser)
+
+    case 'USER_SIGNUP':
+      if (action.payload.is_authenticated === true) {
+        const currentUser = Object.assign({}, action.payload)
+        return Object.assign({}, currentUser)
+      }else {
+        return state
+      }
+
     default:
       return state
   }
