@@ -4,8 +4,15 @@ import history from '../history'
 export const loginUser = (values) => {
   return (dispatch) => {
     dispatch({type: 'LOGGIN_ATTEMPT'})
-    return fetch(`http://localhost:3000/api/auth/login?email=${values.email}&password=${values.password}`, {
-      method: "POST"
+    return fetch(`http://localhost:3000/api/auth/login`, {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(
+        { "user": {
+          "email" : values.email,
+          "password" : values.password
+        }
+      })
     })
       .then(res => {
         if (res.status === 200) {
@@ -36,8 +43,18 @@ export const loginUser = (values) => {
 export const logoutUser = (currentUser) => {
   return (dispatch) => {
     dispatch({type: 'LOGGING_USER_OUT'})
-    return fetch(`http://localhost:3000/api/auth/logout?user_email=${currentUser.email}&user_token=${currentUser.authentication_token}`,{
-      method: "DELETE"
+    return fetch(`http://localhost:3000/api/auth/logout`,{
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-User-Email': currentUser.email,
+        'X-User-Token': currentUser.authentication_token
+      },
+      body: JSON.stringify(
+        { "user": {
+          "email" : currentUser.email,
+        }
+      })
     })
     .then(
       dispatch({
@@ -51,8 +68,15 @@ export const logoutUser = (currentUser) => {
 export const signupUser = (values) => {
   return (dispatch) => {
     dispatch({type: 'SIGNUP_ATTEMPT'})
-    return fetch(`http://localhost:3000/api/auth/users?email=${values.email}&password=${values.password}`, {
-      method: "POST"
+    return fetch(`http://localhost:3000/api/auth/users`, {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(
+        { "user": {
+          "email" : values.email,
+          "password" : values.password
+        }
+      }),
     })
       .then(res => {
         if (res.status === 200) {

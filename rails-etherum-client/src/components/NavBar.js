@@ -11,7 +11,7 @@ const NavBar = ({currentUser, logoutUser}) => {
   }
 
   const renderLinks = (currentUser) => {
-    if (currentUser.is_authenticated) {
+    if (!currentUser.is_authenticated) {
       return (
         <div style={{ borderBottom: '2px solid black', paddingBottom: '10px', marginBottom: '12px' }}>
           <NavLink
