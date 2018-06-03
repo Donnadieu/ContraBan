@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 
 const LoginForm = ({ values, handleSubmit, dispatch }) => {
   const submitInfo = (values) => {
-    dispatch(loginUser(values))
+    dispatch(loginUser(values, dispatch))
   };
   return(
     <div align="center">

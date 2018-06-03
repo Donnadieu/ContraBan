@@ -3,7 +3,7 @@ import history from '../history'
 
 export const loginUser = (values) => {
   return (dispatch) => {
-    dispatch({type: 'LOGGING_USER'})
+    dispatch({type: 'LOGGIN_ATTEMPT'})
     return fetch(`http://localhost:3000/api/auth/login?email=${values.email}&password=${values.password}`, {
       method: "POST"
     })
@@ -27,15 +27,23 @@ export const loginUser = (values) => {
             type: 'USER_LOGIN',
             payload: currentUser
            })
-           history.push("/dashboard")
+           history.push("/")
         }
     })
   }
 }
 
 export const logoutUser = (currentUser) => {
-  return{
-    type: 'USER_LOGOUT',
-    currentUser
-   }
+  return (dispatch) => {
+    dispatch({type: 'LOGGING_USER_OUT'})
+    return fetch(`http://localhost:3000/api/auth/logout?user_email=${currentUser.email}&user_token=${currentUser.authentication_token}`,{
+      method: "DELETE"
+    })
+    .then(
+      dispatch({
+        type: 'USER_LOGOUT'
+      })
+    )
+    history.push("/login")
+  }
 }

@@ -13,7 +13,9 @@ class Api::SessionsController < ApplicationController
   end
 
   def delete
+    @user = User.find_by(email: params[:user_email])
     renew_authentication_token!
+    render json:{ message: "ou have been logged out"}, status: 200
   end
 
   private

@@ -27,7 +27,6 @@ const GetRoutes = ({currentUser}) =>{
       return (
         <div>
           <Route exact path="/login" component={LoginForm} />
-          <Redirect from="/dashboard" to="/login"/>
         </div>
       )
     }
