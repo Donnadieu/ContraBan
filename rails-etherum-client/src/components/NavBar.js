@@ -36,7 +36,6 @@ const NavBar = ({currentUser, logoutUser}) => {
             style={{ marginRight: '10px' }}
             to="/dashboard"
           >
-            Dashboard
           </NavLink>
         </div>
       )
