@@ -7,7 +7,7 @@ import {
 } from "react-router-dom"
 import React from 'react'
 import { connect } from 'react-redux';
-import LoginForm from './LoginForm'
+import Form from '../containers/Form'
 import { withRouter } from 'react-router-dom'
 
 const GetRoutes = ({currentUser}) =>{
@@ -23,8 +23,8 @@ const GetRoutes = ({currentUser}) =>{
     } else {
       return (
         <div>
-          <Route exact path="/login" component={LoginForm} />
-          <Route exact path="/signup" component={LoginForm} />
+          <Route exact path="/login" component={Form} />
+          <Route exact path="/signup" component={Form} />
         </div>
       )
     }

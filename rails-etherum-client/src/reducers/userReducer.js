@@ -1,6 +1,6 @@
 export default (state = {is_authenticated: false}, action) => {
   switch ( action.type ) {
-    case "USER_LOGIN":
+    case 'USER_LOGIN':
       if (action.payload.is_authenticated === true) {
         const currentUser = Object.assign({}, action.payload)
         return Object.assign({}, currentUser)
@@ -10,8 +10,6 @@ export default (state = {is_authenticated: false}, action) => {
     case 'USER_LOGOUT':
       const currentUser = Object.assign({}, {is_authenticated: false})
       return Object.assign({}, currentUser)
-    debugger
-      break;
     default:
       return state
   }
