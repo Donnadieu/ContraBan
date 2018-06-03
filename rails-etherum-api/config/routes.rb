@@ -9,11 +9,12 @@ Rails.application.routes.draw do
       # post   'users/auth/facebook/:id',           to:  'omniauth_callbacks#passthru'
       # get    'users/auth/facebook/callback/:id',  to:  'omniauth_callbacks#facebook'
       # post   'users/auth/facebook/callback/:id',  to:  'omniauth_callbacks#facebook'
-      post   'auth/login',                        to:  'sessions#create'
-      delete 'auth/logout',                       to:  'sessions#delete'
-      post   'auth/users',                        to:  'registrations#create'
-      delete 'auth/users/:id',                    to:  'registrations#delete'
-      patch  'auth/users/:id',                    to:  'registrations#update'
+      post   'auth/login',                  to: 'sessions#create'
+      delete 'auth/logout',                 to: 'sessions#delete'
+      post   'auth/users',                  to: 'registrations#create'
+      delete 'auth/users/:id',              to: 'registrations#delete'
+      patch  'auth/users/:id',              to: 'registrations#update'
+      get 'auth/users/:id/contracts',       to: 'contracts#index'
     end
   end
 end
