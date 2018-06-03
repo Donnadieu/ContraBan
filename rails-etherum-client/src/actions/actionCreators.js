@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch'
 import history from '../history'
 
-export function loginUser(values) {
-  return function(dispatch){
+export const loginUser = (values) => {
+  return (dispatch) => {
     dispatch({type: 'LOGGING_USER'})
     return fetch(`http://localhost:3000/api/auth/login?email=${values.email}&password=${values.password}`, {
       method: "POST"
@@ -33,7 +33,7 @@ export function loginUser(values) {
   }
 }
 
-export function logoutUser(currentUser){
+export const logoutUser = (currentUser) => {
   return{
     type: 'USER_LOGOUT',
     currentUser
