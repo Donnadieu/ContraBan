@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { logoutUser } from '../actions/actionCreators'
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom'
 
 const NavBar = ({currentUser, logoutUser}) => {
   const handleSubmit = () => {
@@ -58,4 +59,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar))

@@ -8,15 +8,15 @@ import registerServiceWorker from './registerServiceWorker'
 import history from './history'
 import App from './containers/App'
 import { persistor, store } from './store';
-import { PersistGate } from 'redux-persist/lib/integration/react';
+import { PersistGate } from 'redux-persist/lib/integration/react'
 
 ReactDOM.render(
   <Provider store={ store }>
-    <Router history = {history}>
-      <PersistGate persistor={persistor}>
+    <PersistGate persistor={persistor}>
+      <Router history = {history}>
         <App/>
-      </PersistGate>
-    </Router>
+      </Router>
+    </PersistGate>
   </Provider>,
    document.getElementById('root')
  )

@@ -11,30 +11,26 @@ import LoginForm from './LoginForm'
 import { withRouter } from 'react-router-dom'
 
 const GetRoutes = ({currentUser}) =>{
-  const userLoggedIn = currentUser.is_authenticated
-  const authRoutes = () => {
-    console.log(userLoggedIn);
+
+  const authRoutes = (currentUser) => {
+    const userLoggedIn = currentUser.is_authenticated
     if (userLoggedIn) {
       return (
         <div>
-          <Redirect from="/" to="/dashboard"/>
-          <Redirect from="/login" to="/dashboard"/>
-          <Redirect from="/signup" to="/dashboard"/>
-          <Route exact path="/dashboard" component={() => <h1>{currentUser.email}</h1>} />
+          <Route exact path="/dashboard" render={() => <h1>{currentUser.email}</h1>} />
         </div>
       )
     } else {
       return (
         <div>
           <Route exact path="/login" component={LoginForm} />
+          <Route exact path="/signup" component={LoginForm} />
         </div>
       )
     }
   }
   return(
-    <div>
-      {authRoutes()}
-    </div>
+    authRoutes(currentUser)
   )
 }
 
