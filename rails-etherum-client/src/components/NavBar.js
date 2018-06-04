@@ -46,16 +46,10 @@ const NavBar = ({currentUser, logoutUser}) => {
   )
 }
 
-const mapStateToProps = function(state){
-  return {
-    currentUser: state.currentUser
-  }
-}
-
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     logoutUser,
   }, dispatch);
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar))
+export default withRouter(connect(null, mapDispatchToProps)(NavBar))

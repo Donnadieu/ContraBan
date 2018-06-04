@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return(
       <div className="App">
-        <NavBar/>
+        <NavBar currentUser={this.props.currentUser}/>
         <GetRoutes currentUser={this.props.currentUser}/>
       </div>
     )
