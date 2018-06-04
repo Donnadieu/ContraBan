@@ -7,7 +7,7 @@ class User < ApplicationRecord
    validates :email, uniqueness: true
    validates :email, presence: true
 
-   has_many: :histories
+   has_many :histories
    has_many :contracts, through: :histories
 
 end
