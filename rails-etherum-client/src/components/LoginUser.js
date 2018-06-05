@@ -1,9 +1,9 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { loginUser, signupUser } from '../actions/actionCreators'
+import { loginUser } from '../actions/actionCreators'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Link, Redirect } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const LoginUser = ({ values, handleSubmit, dispatch, location }) => {
   const loginInfo = (values) => {
