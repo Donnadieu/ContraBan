@@ -7,7 +7,7 @@ class Api::RegistrationsController < ApplicationController
 
     if !params[:user][:password].empty?
       if @user.save
-        render json: @user.as_json(only: [:id, :email, :authentication_token]), status: :created
+        render json: @user.as_json(only: [:id, :email, :authentication_token, :contracts]), status: :created
         return
       else
         warden.custom_failure!

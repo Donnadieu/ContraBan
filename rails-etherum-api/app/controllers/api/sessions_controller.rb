@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
   def create
     if @user&.valid_password?(params[:user][:password])
       renew_authentication_token!
-      render json: @user.as_json(only: [:id, :email, :authentication_token]), status: 200
+      render json: @user.to_json(only: [:id, :email, :authentication_token], include: [:contracts]), status: 200
     else
       render json: @user.errors, status: 401
     end
