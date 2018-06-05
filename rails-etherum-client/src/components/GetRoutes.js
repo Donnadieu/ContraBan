@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import AuthRoutes from './AuthRoutes'
 
-const GetRoutes = ({currentUser, location}) =>{
+const GetRoutes = ({currentUser, location, match}) =>{
   return(
     <div>
       <Switch>
-        <AuthRoutes currentUser={currentUser} location={location}/>
+        <AuthRoutes currentUser={currentUser} location={location} match={match}/>
       </Switch>
     </div>
   )

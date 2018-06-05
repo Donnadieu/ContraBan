@@ -2,16 +2,21 @@ import React from 'react'
 import {
   Route,
   Redirect,
+  Switch
 } from "react-router-dom"
 import Form from '../containers/Form'
 
-const AuthRoutes = ({currentUser, location}) => {
+const AuthRoutes = ({currentUser, location, match}) => {
+  debugger
   const userLoggedIn = currentUser.is_authenticated
   const currentPath = location.pathname
-
   if (userLoggedIn) {
     if (currentPath === '/dashboard') {
-      return <Route path="/dashboard" render={() => <h1>{currentUser.email}</h1>} />
+      return (
+        <div>
+          <Route path="/dashboard" render={() => <h1>{currentUser.email}</h1>} />
+        </div>
+      )
     }else {
       return  <Redirect to='/dashboard'/>
     }
