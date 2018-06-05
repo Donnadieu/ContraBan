@@ -69,33 +69,33 @@ export const signupUser = (values) => {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(
-        { "user": {
-          "email" : values.email,
-          "password" : values.password
-        }
-      }),
-    })
-      .then(res => {
-        if (res.status === 201) {
-          return res.json()
+          { "user": {
+            "email" : values.email,
+            "password" : values.password
+          }
+        }),
+      })
+      .then(response => {
+        if (response.status !== 201) {
+          response.json()
+          .then(signupResponse => {
+            let signupAttempt = { message: signupResponse, is_authenticated: false };
+            dispatch({
+              type: 'USER_SIGNUP',
+              payload: signupAttempt
+             })
+          })
         } else {
-          return res.status
+          response.json()
+          .then(signupResponse => {
+            let currentUser = Object.assign({}, signupResponse, {is_authenticated: true})
+            dispatch({
+              type: 'USER_SIGNUP',
+              payload: currentUser
+             })
+          })
         }
       })
-      .then(signupResponse => {
-        if (Number.isInteger(signupResponse)) {
-          let signupAttempt = { status: signupResponse, is_authenticated: false };
-          dispatch({
-            type: 'USER_SIGNUP',
-            payload: signupAttempt
-           })
-        } else {
-          let currentUser = Object.assign({}, signupResponse, {is_authenticated: true})
-          dispatch({
-            type: 'USER_SIGNUP',
-            payload: currentUser
-           })
-        }
-    })
+
   }
 }
