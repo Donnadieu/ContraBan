@@ -25,6 +25,13 @@ const NavBar = ({currentUser, logoutUser}) => {
             to="/login"
             onClick={handleSubmit}
           >
+            Contracts in the Market
+          </NavLink>
+          <NavLink
+            style={{ marginRight: '10px' }}
+            to="/login"
+            onClick={handleSubmit}
+          >
             Log Out
           </NavLink>
 
