@@ -3,11 +3,15 @@ class Api::SessionsController < ApplicationController
 
 
   def create
-    if @user&.valid_password?(params[:user][:password])
+    if !!@user && @user.valid_password?(params[:user][:password])
       renew_authentication_token!
       render json: @user.to_json(only: [:id, :email, :authentication_token], include: [:contracts]), status: 200
     else
-      render json: @user.errors, status: 401
+      if @user == nil
+        render json:{ message: "User does not exist or Invalid Credentials"}, status: 401
+      else
+        render json: @user.errors, status: 401
+      end      
     end
   end
 
