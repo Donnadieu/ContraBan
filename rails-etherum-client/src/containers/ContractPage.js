@@ -6,7 +6,6 @@ import ContractsList from '../components/ContractsList'
 class ContractsPage extends Component {
   render() {
     const {userContracts} = this.props
-    debugger
     return(
       <ContractsList userContracts={userContracts}/>
     )
