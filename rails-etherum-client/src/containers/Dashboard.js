@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
+import ContractsPage from './ContractPage'
 
 class Dashboard extends Component {
   render() {
@@ -8,6 +9,7 @@ class Dashboard extends Component {
     return(
       <div className="Dashboard">
         <h1>{currentUser.email}</h1>
+        <ContractsPage />
       </div>
     )
   }
@@ -15,7 +17,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = function(state){
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
   }
 }
 
