@@ -3,28 +3,23 @@ import {
   Route,
   Redirect,
 } from "react-router-dom"
-import Form from '../containers/Form'
-import Dashboard from '../containers/Dashboard'
-import ContractShow from './ContractShow'
 
-const AuthRoutes = ({currentUser, location, match}) => {
-  const userLoggedIn = currentUser.is_authenticated
-  const currentPath = location.pathname
-  if (userLoggedIn) {
-    return(
-      <div>
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={ContractShow}/>
-      </div>
-    )
-  } else {
-    return(
-      <div>
-        <Route path="/login" component={Form} />
-        <Route path="/signup" component={Form} />
-      </div>
-    )
-  }
-}
+const AuthRoutes = ({ component: Component, ...rest, currentUser }) => (
+  <Route
+    {...rest}
+    render={props =>
+      currentUser.is_authenticated ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/login",
+            state: { from: props.location }
+          }}
+        />
+      )
+    }
+  />
+);
 
 export default AuthRoutes
