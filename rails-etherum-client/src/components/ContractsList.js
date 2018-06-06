@@ -10,7 +10,9 @@ const ContractsList = ({userContracts, currentUser, history}) => {
 
   const renderContracts = userContracts.map(contract => {
     return(
-      <li key={contract.id}>{contract.blockchain_id} <button onClick={() => handleClick(contract.blockchain_id)}>Show</button></li>
+      <li key={contract.id}>
+        {contract.product_name} <button onClick={() => handleClick(contract.blockchain_id)}>Show</button>
+      </li>
     )
 })
 
