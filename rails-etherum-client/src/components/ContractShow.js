@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 const ContractShow = ({ contract }) => {
   return(
-    <h1>{contract.blockchain_id}</h1>
+    <h1>This is the contract page</h1>
   )
 }
 
