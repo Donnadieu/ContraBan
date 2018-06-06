@@ -29,12 +29,10 @@ export const loginUser = (values) => {
             payload: loginAttempt
            })
         } else {
-          let currentUser = Object.assign({}, loginResponseJson.user, {is_authenticated: true})
+          let currentUser = Object.assign({}, loginResponseJson, {is_authenticated: true})
           dispatch({
             type: 'USER_LOGIN',
-            payload: {
-              currentUser
-            }
+            payload: currentUser
            })
         } history.push('./dashboard')
     })
@@ -52,10 +50,7 @@ export const logoutUser = (currentUser) => {
         'X-User-Token': currentUser.authentication_token
       },
       body: JSON.stringify(
-        { "user": {
-          "email" : currentUser.email,
-        }
-      })
+        { "user": {"email" : currentUser.email}})
     })
     .then(
       dispatch({
@@ -103,5 +98,21 @@ export const signupUser = (values) => {
 }
 
 export const fetchContracts = (currentUser) => {
-  debugger
+  return (dispatch) => {
+    dispatch({type: 'LOADING_CONTRACTS'})
+    return fetch(`http://localhost:3000/api/auth/users/${currentUser.id}/contracts`, {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-User-Email': currentUser.email,
+        'X-User-Token': currentUser.authentication_token
+      },
+      body: JSON.stringify(
+        { "user": {"email": currentUser.email}}
+      )
+    })
+    .then(response => {
+      debugger
+    })
+  }
 }
