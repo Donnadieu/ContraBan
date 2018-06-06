@@ -4,7 +4,7 @@ class Api::SessionsController < ApplicationController
 
   def create
     @contracts = Contract.all
-    
+
     if !!@user && @user.valid_password?(params[:user][:password])
       renew_authentication_token!
       render json: {

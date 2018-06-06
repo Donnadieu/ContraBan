@@ -29,11 +29,20 @@ export const loginUser = (values) => {
             payload: loginAttempt
            })
         } else {
-          let currentUser = Object.assign({}, loginResponseJson, {is_authenticated: true})
+          let currentUser = Object.assign({}, loginResponseJson.user, {is_authenticated: true})
+          let allContracts = Object.assign({}, loginResponseJson.contracts)
           dispatch({
             type: 'USER_LOGIN',
-            payload: currentUser
+            payload: {
+              currentUser
+            }
            })
+           dispatch({
+             type: 'FETCH_CONTRACTS',
+             payload: {
+               allContracts
+             }
+            })
         } history.push('./dashboard')
     })
   }
