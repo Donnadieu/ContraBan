@@ -1,10 +1,18 @@
 import React from 'react'
+import { Redirect } from "react-router-dom"
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
-const ContractsList = ({userContracts}) => {
+const ContractsList = ({userContracts, currentUser, history}) => {
+  const handleClick = (contractId) => {
+    return (history.push(`/dashboard/${currentUser.id}/contracts/${contractId}`))
+  }
 
-  const renderContracts = userContracts.map(contract =>
-    <li key={contract.id}>{contract.blockchain_id}</li>
-  )
+  const renderContracts = userContracts.map(contract => {
+    return(
+      <li key={contract.id}>{contract.blockchain_id} <button onClick={() => handleClick(contract.blockchain_id)}>Show</button></li>
+    )
+})
 
   return(
     <div>
@@ -17,4 +25,4 @@ const ContractsList = ({userContracts}) => {
   )
 }
 
-export default ContractsList
+export default withRouter(connect()(ContractsList))

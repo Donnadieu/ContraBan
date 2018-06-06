@@ -10,22 +10,19 @@ const AuthRoutes = ({currentUser, location, match}) => {
   const userLoggedIn = currentUser.is_authenticated
   const currentPath = location.pathname
   if (userLoggedIn) {
-    if (currentPath === '/dashboard') {
-      return (
-        <div>
-          <Route path="/dashboard" component={Dashboard} />
-        </div>
-      )
-    }else {
-      return  <Redirect to='/dashboard'/>
-    }
-  }else {
-    if (currentPath === '/login') {
-      return <Route exact path="/login" component={Form} />
-    } else if (currentPath === '/signup') {
-      return <Route exact path="/signup" component={Form} />
-    }
-    return <Redirect to='/login'/>
+    return(
+      <div>
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={() => <h1>This is the contract page</h1>}/>
+      </div>
+    )
+  } else {
+    return(
+      <div>
+        <Route path="/login" component={Form} />
+        <Route path="/signup" component={Form} />
+      </div>
+    )
   }
 }
 
