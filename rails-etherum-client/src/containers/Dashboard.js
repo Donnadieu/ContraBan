@@ -8,7 +8,7 @@ class Dashboard extends Component {
     const { currentUser } = this.props
     return(
       <div className="Dashboard">
-        <h1>{currentUser.email}</h1>
+        <h1>Welcome {currentUser.email}</h1>
         <ContractsPage />
       </div>
     )
