@@ -4,4 +4,8 @@ class Api::ContractsController < ApplicationController
     @contracts = Contract.all
     render json: @contracts.to_json(), status: 200
   end
+
+  def show
+
+  end
 end
