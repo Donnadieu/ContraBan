@@ -95,7 +95,7 @@ export const signupUser = (values) => {
               payload: currentUser
              })
           })
-        }
+        }history.push('/dashboard')
       })
 
   }
