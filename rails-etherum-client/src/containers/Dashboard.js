@@ -7,8 +7,7 @@ import { fetchContracts } from '../actions/actionCreators'
 
 class Dashboard extends Component {
   componentDidMount() {
-    const currentUser = this.props.currentUser
-    return fetchContracts(currentUser)
+    this.props.fetchContracts(this.props.currentUser)
   }
   render() {
     const { currentUser } = this.props
@@ -33,4 +32,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-export default withRouter(connect(mapStateToProps)(Dashboard))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Dashboard))

@@ -106,10 +106,7 @@ export const fetchContracts = (currentUser) => {
         'Content-Type': 'application/json',
         'X-User-Email': currentUser.email,
         'X-User-Token': currentUser.authentication_token
-      },
-      body: JSON.stringify(
-        { "user": {"email": currentUser.email}}
-      )
+      }
     })
     .then(response => {
       debugger
