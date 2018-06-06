@@ -23,26 +23,19 @@ export const loginUser = (values) => {
       })
       .then(loginResponseJson => {
         if (Number.isInteger(loginResponseJson)) {
-          let loginAttempt = { status: loginResponseJson, is_authenticated: false };
+          let loginAttempt = { status: loginResponseJson, is_authenticated: false }
           dispatch({
             type: 'USER_LOGIN',
             payload: loginAttempt
            })
         } else {
           let currentUser = Object.assign({}, loginResponseJson.user, {is_authenticated: true})
-          let allContracts = Object.assign({}, loginResponseJson.contracts)
           dispatch({
             type: 'USER_LOGIN',
             payload: {
               currentUser
             }
            })
-           dispatch({
-             type: 'FETCH_CONTRACTS',
-             payload: {
-               allContracts
-             }
-            })
         } history.push('./dashboard')
     })
   }
@@ -106,6 +99,5 @@ export const signupUser = (values) => {
           })
         }history.push('/dashboard')
       })
-
   }
 }
