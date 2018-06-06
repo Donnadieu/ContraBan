@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import history from '../history'
 
 export const loginUser = (values) => {
   return (dispatch) => {
@@ -33,7 +34,7 @@ export const loginUser = (values) => {
             type: 'USER_LOGIN',
             payload: currentUser
            })
-        }
+        } history.push('./dashboard')
     })
   }
 }
