@@ -10,6 +10,8 @@
 
 10.times do
   @user.contracts.create(
+    product_name: "Title",
+    product_info: "Details"
     blockchain_id: Faker::Bitcoin.address
   )
 end
