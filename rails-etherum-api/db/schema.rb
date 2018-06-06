@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20180606173006) do
   create_table "contracts", force: :cascade do |t|
     t.string "blockchain_id"
     t.datetime "created_at"
-    t.string "name"
-    t.string "info"
+    t.string "product_name"
+    t.string "product_info"
     t.string "image"
   end
 
@@ -44,8 +44,7 @@ ActiveRecord::Schema.define(version: 20180606173006) do
     t.datetime "updated_at", null: false
     t.string "authentication_token", limit: 30
     t.string "provider"
-    t.string "facebook_uid"
-    t.boolean "is_authenticated", default: false
+    t.string "uid"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
