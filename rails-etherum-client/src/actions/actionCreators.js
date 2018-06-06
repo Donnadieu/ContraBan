@@ -101,3 +101,7 @@ export const signupUser = (values) => {
       })
   }
 }
+
+export const fetchContracts = (currentUser) => {
+  debugger
+}
