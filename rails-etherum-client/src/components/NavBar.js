@@ -22,12 +22,6 @@ const NavBar = ({currentUser, logoutUser}) => {
           </NavLink>
           <NavLink
             style={{ marginRight: '10px' }}
-            to="/contracts"
-          >
-            Contracts in the Market
-          </NavLink>
-          <NavLink
-            style={{ marginRight: '10px' }}
             to="/login"
             onClick={handleSubmit}
           >
@@ -41,7 +35,7 @@ const NavBar = ({currentUser, logoutUser}) => {
         <div style={{ borderBottom: '2px solid black', paddingBottom: '10px', marginBottom: '12px' }}>
           <NavLink
             style={{ marginRight: '10px' }}
-            to="/dashboard"
+            to=""
           >
           </NavLink>
         </div>
