@@ -100,7 +100,7 @@ export const signupUser = (values) => {
 export const fetchContracts = (currentUser) => {
   return (dispatch) => {
     dispatch({type: 'LOADING_CONTRACTS'})
-    return fetch(`http://localhost:3000/api/auth/users/${currentUser.id}/contracts`, {
+    return fetch(`http://localhost:3000/api/auth/contracts`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
@@ -109,7 +109,16 @@ export const fetchContracts = (currentUser) => {
       }
     })
     .then(response => {
-      debugger
+      response.json()
+      .then(responseJson => {
+        let allContracts = responseJson.slice(0)
+        dispatch({
+          type: 'FETCH_CONTRACTS',
+          allContracts: allContracts,
+          currentUser: currentUser
+        })
+      })
     })
+
   }
 }

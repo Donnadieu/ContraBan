@@ -1,8 +1,8 @@
 export default (state = [], action) => {
   switch (action.type) {
     case 'FETCH_CONTRACTS':
-      if (state.is_authenticated === true) {
-        const allContracts = action.payload.allContracts
+      if (action.currentUser.is_authenticated === true) {
+        const allContracts = action.allContracts
         return allContracts
       }else {
         return state

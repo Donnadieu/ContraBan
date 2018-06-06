@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       post   'auth/users',                  to: 'registrations#create'
       delete 'auth/users/:id',              to: 'registrations#delete'
       patch  'auth/users/:id',              to: 'registrations#update'
-      get    'auth/users/:id/contracts',    to: 'contracts#index'
+      get    'auth/contracts',              to: 'contracts#index'
     end
   end
 end
