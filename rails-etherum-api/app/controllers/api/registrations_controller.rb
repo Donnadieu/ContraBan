@@ -4,10 +4,14 @@ class Api::RegistrationsController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @contracts = Contract.all
 
     if !params[:user][:password].empty?
       if @user.save
-        render json: @user.as_json(only: [:id, :email, :authentication_token], include: [:contracts]), status: :created
+        render json: {
+          @user.as_json(only: [:id, :email, :authentication_token], include: [:contracts]), status: :created,
+          @contracts.as_json
+        }
         return
       else
         warden.custom_failure!
