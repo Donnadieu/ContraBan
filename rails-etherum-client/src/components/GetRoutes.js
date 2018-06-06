@@ -15,7 +15,9 @@ const GetRoutes = ({currentUser, location, match}) =>{
     <div>
       <Switch>
         <Route exact path="/login" component={Form}/>
-        <AuthRoutes path="/dashboard" component={Dashboard}  currentUser={currentUser} />
+        <Route exact path="/signup" component={Form}/>
+        <AuthRoutes exact path="/dashboard" component={Dashboard}  currentUser={currentUser} />
+        <AuthRoutes exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={ContractShow} currentUser={currentUser}/>
       </Switch>
     </div>
   )
