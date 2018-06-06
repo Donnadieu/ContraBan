@@ -8,6 +8,7 @@ import userReducer from './reducers/userReducer';
 import {reducer as formReducer} from 'redux-form';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import contractReducer from './reducers/contractReducer';
 
 
 const persistConfig = {
@@ -17,8 +18,9 @@ const persistConfig = {
 }
 
 const reducers = combineReducers({
+  allContracts: contractReducer,
   currentUser: userReducer,
-  form: formReducer,
+  form: formReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers)
