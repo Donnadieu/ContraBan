@@ -5,6 +5,7 @@ import {
 } from "react-router-dom"
 import Form from '../containers/Form'
 import Dashboard from '../containers/Dashboard'
+import ContractShow from './ContractShow'
 
 const AuthRoutes = ({currentUser, location, match}) => {
   const userLoggedIn = currentUser.is_authenticated
@@ -13,7 +14,7 @@ const AuthRoutes = ({currentUser, location, match}) => {
     return(
       <div>
         <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={() => <h1>This is the contract page</h1>}/>
+        <Route exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={ContractShow}/>
       </div>
     )
   } else {
