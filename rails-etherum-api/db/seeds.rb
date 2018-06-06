@@ -6,10 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 @user = User.last
-# @user_second = User.first
+@user_second = User.first
 
 10.times do
   @user.contracts.create(
+    blockchain_id: Faker::Bitcoin.address
+  )
+end
+
+10.times do
+  @user_second.contracts.create(
     blockchain_id: Faker::Bitcoin.address
   )
 end
