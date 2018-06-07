@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import AuthRoutes from './AuthRoutes'
 import Dashboard from '../containers/Dashboard'
-import ContractShow from './ContractShow'
+import ContractOwnerShow from './ContractOwnerShow'
 import Form from '../containers/Form'
 
 const GetRoutes = ({currentUser, location, match}) =>{
@@ -17,7 +17,7 @@ const GetRoutes = ({currentUser, location, match}) =>{
         <Route exact path="/login" component={Form}/>
         <Route exact path="/signup" component={Form}/>
         <AuthRoutes exact path="/dashboard" component={Dashboard}  currentUser={currentUser} />
-        <AuthRoutes exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={ContractShow} currentUser={currentUser}/>
+        <AuthRoutes exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={ContractOwnerShow} currentUser={currentUser}/>
       </Switch>
     </div>
   )
