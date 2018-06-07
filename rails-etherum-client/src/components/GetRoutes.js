@@ -1,6 +1,7 @@
 import {
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom"
 import React from 'react'
 import { connect } from 'react-redux';
@@ -11,15 +12,27 @@ import ContractOwnerShow from './ContractOwnerShow'
 import Form from '../containers/Form'
 
 const GetRoutes = ({currentUser, location, match}) =>{
+  const renderIf = (currentUser) => {
+    if (currentUser.is_authenticated) {
+      return(
+        <Switch>
+          <Redirect from="/login" to="/dashboard"/>
+          <Redirect from="/signup" to="/dashboard"/>
+          <AuthRoutes exact path="/dashboard" component={Dashboard}  currentUser={currentUser} />
+          <AuthRoutes exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={ContractOwnerShow} currentUser={currentUser}/>
+        </Switch>
+      )
+    }else {
+      return(
+        <Switch>
+          <Route exact path="/login" component={Form}/>
+          <Route exact path="/signup" component={Form}/>
+        </Switch>
+      )
+    }
+  }
   return(
-    <div>
-      <Switch>
-        <Route exact path="/login" component={Form}/>
-        <Route exact path="/signup" component={Form}/>
-        <AuthRoutes exact path="/dashboard" component={Dashboard}  currentUser={currentUser} />
-        <AuthRoutes exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={ContractOwnerShow} currentUser={currentUser}/>
-      </Switch>
-    </div>
+    renderIf(currentUser)
   )
 }
 
