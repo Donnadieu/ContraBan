@@ -34,7 +34,7 @@ export const loginUser = (values) => {
             type: 'USER_LOGIN',
             payload: currentUser
            })
-        } history.push('./dashboard')
+        } history.push('/dashboard')
     })
   }
 }
