@@ -29,7 +29,6 @@ export const loginUser = (values) => {
             payload: loginAttempt
            })
         } else {
-          debugger
           let currentUser = Object.assign({}, loginResponseJson, {is_authenticated: true})
           dispatch({
             type: 'USER_LOGIN',
@@ -112,7 +111,6 @@ export const fetchContracts = (currentUser) => {
     .then(response => {
       response.json()
       .then(responseJson => {
-        debugger
         let allContracts = responseJson.slice(0)
         dispatch({
           type: 'FETCH_CONTRACTS',
