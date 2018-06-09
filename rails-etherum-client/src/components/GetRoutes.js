@@ -1,15 +1,16 @@
 import {
   Switch,
   Route,
-  Redirect
+  Redirect,
+  withRouter
 } from "react-router-dom"
 import React from 'react'
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
 import AuthRoutes from './AuthRoutes'
 import Dashboard from '../containers/Dashboard'
 import ContractOwnerShow from './ContractOwnerShow'
 import RegistrationForm from '../containers/RegistrationForm'
+import ContractNew from '../containers/ContractNew'
 
 const GetRoutes = ({currentUser, location, match}) =>{
   const renderIf = (currentUser) => {
@@ -20,12 +21,14 @@ const GetRoutes = ({currentUser, location, match}) =>{
           <Redirect from="/login" to="/dashboard"/>
           <Redirect from="/signup" to="/dashboard"/>
           <AuthRoutes exact path="/dashboard" component={Dashboard}  currentUser={currentUser} />
+          <AuthRoutes exact path={`/dashboard/${currentUser.id}/contracts/new`} component={ContractNew} currentUser={currentUser}/>
           <AuthRoutes exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={ContractOwnerShow} currentUser={currentUser}/>
         </Switch>
       )
     }else {
       return(
         <Switch>
+          <Redirect from="/" exact to="/login"/>
           <Redirect from="/dashboard" exact to="/login"/>
           <Route exact path="/login" component={RegistrationForm}/>
           <Route exact path="/signup" component={RegistrationForm}/>
