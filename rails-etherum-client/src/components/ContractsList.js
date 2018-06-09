@@ -19,7 +19,6 @@ const ContractsList = ({userContracts, currentUser, history}) => {
   return(
     <div>
       <h2>Your current Contracts</h2>
-      <button>Create a New Contract</button>
       <ol>
         {renderContracts}
       </ol>
