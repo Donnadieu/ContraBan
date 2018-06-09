@@ -20,7 +20,8 @@ const persistConfig = {
 const reducers = combineReducers({
   allContracts: contractReducer,
   currentUser: userReducer,
-  form: formReducer
+  form: formReducer,
+  contractNew: formReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers)
