@@ -9,7 +9,7 @@ import { withRouter } from 'react-router-dom'
 import AuthRoutes from './AuthRoutes'
 import Dashboard from '../containers/Dashboard'
 import ContractOwnerShow from './ContractOwnerShow'
-import Form from '../containers/Form'
+import RegistrationForm from '../containers/RegistrationForm'
 
 const GetRoutes = ({currentUser, location, match}) =>{
   const renderIf = (currentUser) => {
@@ -27,8 +27,8 @@ const GetRoutes = ({currentUser, location, match}) =>{
       return(
         <Switch>
           <Redirect from="/dashboard" exact to="/login"/>
-          <Route exact path="/login" component={Form}/>
-          <Route exact path="/signup" component={Form}/>
+          <Route exact path="/login" component={RegistrationForm}/>
+          <Route exact path="/signup" component={RegistrationForm}/>
         </Switch>
       )
     }
