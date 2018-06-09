@@ -1,13 +1,21 @@
 import React, {Component} from 'react'
+import { Redirect } from "react-router-dom"
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import ContractsList from '../components/ContractsList'
 
 class ContractsPage extends Component {
   render() {
-    const {userContracts, currentUser} = this.props
+    const {userContracts, currentUser, history} = this.props
+
+    const handleClick = () => {
+      return (history.push(`/dashboard/${currentUser.id}/contracts/new`))
+    }
     return(
-      <ContractsList userContracts={userContracts} currentUser={currentUser}/>
+      <div>
+        <button onClick={() => handleClick()}>Create a New Contract</button>
+        <ContractsList userContracts={userContracts} currentUser={currentUser}/>
+      </div>
     )
   }
 }
