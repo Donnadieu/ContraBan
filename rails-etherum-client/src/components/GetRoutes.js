@@ -16,7 +16,7 @@ const GetRoutes = ({currentUser, location, match}) =>{
     if (currentUser.is_authenticated) {
       return(
         <Switch>
-          <Redirect from="/" to="/dashboard"/>
+          <Redirect from="/" exact to="/dashboard"/>
           <Redirect from="/login" to="/dashboard"/>
           <Redirect from="/signup" to="/dashboard"/>
           <AuthRoutes exact path="/dashboard" component={Dashboard}  currentUser={currentUser} />
@@ -26,6 +26,7 @@ const GetRoutes = ({currentUser, location, match}) =>{
     }else {
       return(
         <Switch>
+          <Redirect from="/dashboard" exact to="/login"/>
           <Route exact path="/login" component={Form}/>
           <Route exact path="/signup" component={Form}/>
         </Switch>
