@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       delete 'auth/users/:id',                to: 'registrations#delete'
       patch  'auth/users/:id',                to: 'registrations#update'
       get    'auth/contracts',                to: 'contracts#index'
+      post   'auth/contracts',                to: 'contracts#create'
       get    'auth/contracts/:blockchain_id', to: 'contracts#show'
     end
   end
