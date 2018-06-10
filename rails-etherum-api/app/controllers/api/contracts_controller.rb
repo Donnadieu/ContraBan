@@ -5,7 +5,7 @@ class Api::ContractsController < ApplicationController
     render json: @contracts.as_json(except: [:histories]), status: 200
   end
 
-  def show
+  def create
 
   end
 end
