@@ -122,3 +122,22 @@ export const fetchContracts = (currentUser) => {
 
   }
 }
+
+export const createContract = (values, currentUser) => {
+  return (dispatch) => {
+    const formData = new FormData()
+    formData.append("product_name", values.name)
+    formData.append("product_info", values.name)
+    formData.append("image", values.image)
+    dispatch({type: 'CREATING_CONTRACT'})
+    return fetch(`http://localhost:3000/api/auth/contracts`, {
+      method: 'post',
+      headers: {
+        'X-User-Email': currentUser.email,
+        'X-User-Token': currentUser.authentication_token
+      },
+      body: formData,
+      })
+  }
+}
+// ?user_email=${currentUser.email}&user_token=${currentUser.authentication_token}
