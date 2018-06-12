@@ -7,6 +7,14 @@ export default (state = [], action) => {
       }else {
         return state
       }
+
+    case 'USER_LOGOUT':
+      const allContracts = []
+      return allContracts
+
+    case 'CREATE_CONTRACT':
+      const contract = Object.assign({}, action.payload.contract)
+      return [...state, contract]
     default:
       return state
   }
