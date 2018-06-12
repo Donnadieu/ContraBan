@@ -127,7 +127,7 @@ export const createContract = (values, currentUser) => {
   return (dispatch) => {
     const formData = new FormData()
     formData.append("product_name", values.name)
-    formData.append("product_info", values.name)
+    formData.append("product_info", values.details)
     formData.append("image", values.image)
     dispatch({type: 'CREATING_CONTRACT'})
     return fetch(`http://localhost:3000/api/auth/contracts`, {
@@ -136,7 +136,22 @@ export const createContract = (values, currentUser) => {
         'X-User-Email': currentUser.email,
         'X-User-Token': currentUser.authentication_token
       },
-      body: formData,
+      body: formData
+      })
+      .then(res => {
+        if (res.status === 201 ) {
+          res.json()
+          .then(contract => {
+            dispatch({
+              type: 'CREATE_CONTRACT',
+              payload: {
+                contract: contract,
+                currentUser: currentUser
+              }              
+            })
+            history.push(`/dashboard/${currentUser.id}/contracts/${contract.blockchain_id}`)
+          })
+        }
       })
   }
 }
