@@ -7,11 +7,19 @@ class Api::ContractsController < ApplicationController
   end
 
   def create
-    binding.pry
+    @contract = Contract.new(contract_parmas)
+    @contract.blockchain_id = Faker::Bitcoin.address
+
+    if @contract.save
+      current_user.contracts << @contract
+      render json: @contract, status: :created
+    else
+      render json: @contract.errors, status: :unprocessable_entity
+    end
   end
 
   private
     def contract_parmas
-      params.require(:contract).permit(:product_name, :product_info, :image)
+      params.permit(:product_name, :product_info, :image)
     end
 end
