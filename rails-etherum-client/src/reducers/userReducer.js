@@ -4,23 +4,28 @@ export default (state = {is_authenticated: false}, action) => {
     case 'USER_LOGIN':
       if (action.payload.is_authenticated === true) {
         const currentUser = Object.assign({}, action.payload)
-        return Object.assign({}, currentUser)
+        return currentUser
       }else {
         return state
       }
 
     case 'USER_LOGOUT':
-      const currentUser = Object.assign({}, {is_authenticated: false})
-      return Object.assign({}, currentUser)
+    const currentUser = Object.assign({}, {is_authenticated: false})
+    return currentUser
 
     case 'USER_SIGNUP':
       if (action.payload.is_authenticated === true) {
         const currentUser = Object.assign({}, action.payload)
-        return Object.assign({}, currentUser)
+        return currentUser
       }else {
         return state
       }
+    case 'CREATE_CONTRACT':
+      const user = Object.assign({}, action.payload.currentUser)
+      const newContract =  Object.assign({}, action.payload.contract)
+      user.contracts.push(newContract)
 
+      return user
     default:
       return state
   }
