@@ -9,4 +9,8 @@ class Contract < ApplicationRecord
    def current_owner
     self.histories.last.user_id
    end
+
+   def price
+     self.histories.last.price
+   end
 end
