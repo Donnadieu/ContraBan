@@ -15,6 +15,7 @@ const ContractOwnerShow = ({ contract }) => {
     <div>
       <h1>Contract ID: {contract.blockchain_id}</h1>
       <h2>Contract information</h2>
+      <p><strong>Price:</strong> ${contract.histories[contract.histories.length - 1].price}</p>
       <p><strong>Product name: </strong>{contract.product_name}</p>
       <p><strong>Product details: </strong></p>
       <p>{contract.product_info}</p>
@@ -38,7 +39,7 @@ const ContractOwnerShow = ({ contract }) => {
 }
 
 const mapStateToProps = (state, ownProps ) => {
-  const contract = state.allContracts.find( contract => contract.blockchain_id === ownProps.match.params.contractId )
+  const contract = state.currentUser.contracts.find( contract => contract.blockchain_id === ownProps.match.params.contractId )
   if (contract) {
     return { contract }
   }else {
