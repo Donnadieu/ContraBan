@@ -9,8 +9,10 @@ import { connect } from 'react-redux';
 import AuthRoutes from './AuthRoutes'
 import Dashboard from '../containers/Dashboard'
 import ContractOwnerShow from './ContractOwnerShow'
+import ContractShow from './ContractShow'
 import RegistrationForm from '../containers/RegistrationForm'
 import ContractNew from '../containers/ContractNew'
+import AuthContract from './AuthContract'
 
 const GetRoutes = ({currentUser, location, match}) =>{
   const renderIf = (currentUser) => {
@@ -22,7 +24,8 @@ const GetRoutes = ({currentUser, location, match}) =>{
           <Redirect from="/signup" to="/dashboard"/>
           <AuthRoutes exact path="/dashboard" component={Dashboard}  currentUser={currentUser} />
           <AuthRoutes exact path={`/dashboard/${currentUser.id}/contracts/new`} component={ContractNew} currentUser={currentUser}/>
-          <AuthRoutes exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={ContractOwnerShow} currentUser={currentUser}/>
+          <AuthContract exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={ContractOwnerShow} currentUser={currentUser}/>
+          <Route exact path={`/contracts/:contractId`} component={ContractShow} currentUser={currentUser}/>
         </Switch>
       )
     }else {
