@@ -9,9 +9,8 @@ class Api::ContractsController < ApplicationController
   def create
     @contract = Contract.new(contract_parmas)
     @contract.blockchain_id = Faker::Bitcoin.address
-
     if @contract.save
-      current_user.contracts << @contract
+      @history = History.create(user_id: current_user.id, contract_id: @contract.id, price: params[:price].to_f)
       render json: @contract, status: :created
     else
       render json: @contract.errors, status: :unprocessable_entity
