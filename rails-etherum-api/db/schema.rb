@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20180610154843) do
   create_table "histories", force: :cascade do |t|
     t.integer "user_id"
     t.integer "contract_id"
-    t.integer "price"
+    t.float "price"
     t.datetime "created_at"
   end
 
