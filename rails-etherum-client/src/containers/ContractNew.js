@@ -62,7 +62,7 @@ const ContractNew = ({values, dispatch, handleSubmit, currentUser}) => {
             />
           </div>
           <br></br>
-          <button type="submit" label="submit">Signup</button>
+          <button type="submit" label="submit">Deploy</button>
         </form>
       </div>
     )
