@@ -9,6 +9,12 @@ const ContractNew = ({values, dispatch, handleSubmit, currentUser}) => {
     const contractInfo = (values, dispatch) => {
       dispatch(createContract(values, currentUser))
     }
+    const maskMoney = (value) => {
+      if (value === null || value === '' || value === undefined) { return '' }
+      let v = value.toString().replace(/[^\d.]/g, '')
+      v = v.slice(0, v.indexOf('.') >= 0 ? v.indexOf('.') + 3 : undefined)
+      return parseFloat(v)
+    }
     return(
       <div>
         <form onSubmit={handleSubmit(contractInfo)}>
@@ -44,6 +50,18 @@ const ContractNew = ({values, dispatch, handleSubmit, currentUser}) => {
             />
           </div>
           <br></br>
+          <div>
+            <label><strong>Price</strong></label>
+            <br></br>
+            <Field
+              name="price"
+              component="input"
+              type="number"
+              placeholder="Price"
+              normalize={maskMoney}
+            />
+          </div>
+          <br></br>
           <button type="submit" label="submit">Signup</button>
         </form>
       </div>
@@ -59,3 +77,4 @@ const mapStateToProps = (state) => {
 export default withRouter(connect(mapStateToProps)(reduxForm({
   form: 'ContractNew',
 })(ContractNew)))
+// "contract[histories_attributes][0][price]"
