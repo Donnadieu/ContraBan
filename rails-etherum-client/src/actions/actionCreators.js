@@ -129,6 +129,7 @@ export const createContract = (values, currentUser) => {
     formData.append("product_name", values.name)
     formData.append("product_info", values.details)
     formData.append("image", values.image)
+    formData.append("price", values.price)
     dispatch({type: 'CREATING_CONTRACT'})
     return fetch(`http://localhost:3000/api/auth/contracts`, {
       method: 'post',
@@ -147,7 +148,7 @@ export const createContract = (values, currentUser) => {
               payload: {
                 contract: contract,
                 currentUser: currentUser
-              }              
+              }
             })
             history.push(`/dashboard/${currentUser.id}/contracts/${contract.blockchain_id}`)
           })
