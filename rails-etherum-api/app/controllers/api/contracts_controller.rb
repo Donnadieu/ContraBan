@@ -17,6 +17,13 @@ class Api::ContractsController < ApplicationController
     end
   end
 
+  def update
+    @current_owner = User.find_by(email: params[:owner][:email])
+    @new_owner = User.find_or_create_by(email: params[:new_owner][:email])
+    @contract = Contract.find_by(blockchain_id: params[:blockchain_id])
+    binding.pry
+  end
+
   private
     def contract_parmas
       params.permit(:product_name, :product_info, :image)
