@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import ReactTable from "react-table"
 import {BootstrapTable,
        TableHeaderColumn} from 'react-bootstrap-table'
+import TransferContract from '../containers/TransferContract'
 
 const ContractOwnerShow = ({ contract }) => {
   var data = [
@@ -13,9 +14,10 @@ const ContractOwnerShow = ({ contract }) => {
   ];
 
   return(
-    <div>
+    <div align='center'>
       <h1>Contract ID: {contract.blockchain_id}</h1>
       <img src={process.env.PUBLIC_URL + `/uploads/contract/image/${contract.id}/${contract.blockchain_id}.jpg`} alt="logo" height="250" width="250"/>
+      <TransferContract contract={contract} />
       <h2>Contract information</h2>
       <p><strong>Price:</strong> ${contract.price}</p>
       <p><strong>Product name: </strong>{contract.product_name}</p>
