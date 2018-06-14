@@ -10,7 +10,7 @@ const ContractShow = ({ contract }) => {
   ];
 
   return(
-    <div>
+    <div align='center'>
       <h1>Contract ID: {contract.blockchain_id}</h1>
       <img src={process.env.PUBLIC_URL + `/uploads/contract/image/${contract.id}/${contract.blockchain_id}.jpg`} alt="logo" height="250" width="250"/>
       <h2>Contract information</h2>
