@@ -156,4 +156,25 @@ export const createContract = (values, currentUser) => {
       })
   }
 }
-// ?user_email=${currentUser.email}&user_token=${currentUser.authentication_token}
+export const transferContract = (values, currentUser, dispatch, contract) =>{
+  return (dispatch) => {
+    dispatch({type: 'TRANSFERING_CONTRACT'})
+    return fetch(`http://localhost:3000/api/auth/contracts/${contract.blockchain_id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-User-Email': currentUser.email,
+        'X-User-Token': currentUser.authentication_token
+      },
+      body: JSON.stringify(
+        { "owner": { "email" : currentUser.email },
+          "new_owner": {"email" : values.email },
+          "contract": {"price" : values.price }
+      })
+    })
+    .then(response => {
+      debugger
+    })
+  }
+
+}
