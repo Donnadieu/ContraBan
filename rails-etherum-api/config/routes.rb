@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       patch  'auth/users/:id',                to: 'registrations#update'
       post   'auth/contracts',                to: 'contracts#create'
       get    'auth/contracts',                to: 'contracts#index'
+      patch  'auth/contracts/:blockchain_id', to: 'contracts#update'
     end
   end
 end
