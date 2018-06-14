@@ -12,6 +12,7 @@ const ContractShow = ({ contract }) => {
   return(
     <div>
       <h1>Contract ID: {contract.blockchain_id}</h1>
+      <img src={process.env.PUBLIC_URL + `/uploads/contract/image/${contract.id}/${contract.blockchain_id}.jpg`} alt="logo" height="250" width="250"/>
       <h2>Contract information</h2>
       <p><strong>Price:</strong> ${contract.price}</p>
       <p><strong>Product name: </strong>{contract.product_name}</p>
@@ -28,7 +29,7 @@ const mapStateToProps = (state, ownProps ) => {
   if (contract) {
     return { contract }
   } else {
-    return { contract }
+    return { contract: {} }
   }
 }
 

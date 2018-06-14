@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import ReactTable from "react-table"
 import {BootstrapTable,
-       TableHeaderColumn} from 'react-bootstrap-table';
+       TableHeaderColumn} from 'react-bootstrap-table'
 
 const ContractOwnerShow = ({ contract }) => {
   var data = [
@@ -15,6 +15,7 @@ const ContractOwnerShow = ({ contract }) => {
   return(
     <div>
       <h1>Contract ID: {contract.blockchain_id}</h1>
+      <img src={process.env.PUBLIC_URL + `/uploads/contract/image/${contract.id}/${contract.blockchain_id}.jpg`} alt="logo" height="250" width="250"/>
       <h2>Contract information</h2>
       <p><strong>Price:</strong> ${contract.price}</p>
       <p><strong>Product name: </strong>{contract.product_name}</p>
@@ -46,7 +47,7 @@ const mapStateToProps = (state, ownProps ) => {
   if (userContract) {
     return { contract: userContract }
   } else {
-    return { contract }
+    return { contract: {} }
   }
 }
 
