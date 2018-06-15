@@ -4,17 +4,12 @@ class Api::RegistrationsController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
-    if !params[:user][:password].empty?
-      if @user.save
-        render json: @user, status: :created
-        return
-      else
-        warden.custom_failure!
-        render json: @user.errors, status: :unprocessable_entity
-      end
+    if @user.save
+      render json: @user, status: :created
+      return
     else
-      render json:{ errors: "Password can't be blank"}, status: :unprocessable_entity
+      warden.custom_failure!
+      render json: @user.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -25,10 +20,10 @@ class Api::RegistrationsController < ApplicationController
         return
       else
         warden.custom_failure!
-        render json:{ errors: "Wrong parameters"}, status: :unprocessable_entity
+        render json:{ message: "Wrong parameters"}, status: :unprocessable_entity
       end
     else
-      render json:{ errors: "Unable to perform this action"}, status: 401
+      render json:{ message: "Unable to perform this action"}, status: 401
     end
   end
 
