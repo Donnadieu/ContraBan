@@ -24,10 +24,12 @@ class Api::ContractsController < ApplicationController
     if @new_owner
       @contract = Contract.find_by(blockchain_id: params[:blockchain_id])
       History.create(user_id: @new_owner.id, contract_id: @contract.id, transfer_price: params[:contract][:price])
+      render json: @current_owner, status: 200
     else
       @new_owner = User.create(email: params[:owner][:email], password: Devise.friendly_token.first(8))
       @contract = Contract.find_by(blockchain_id: params[:blockchain_id])
       History.create(user_id: @new_owner.id, contract_id: @contract.id, transfer_price: params[:contract][:price])
+      render json: @current_owner, status: 200
     end
   end
 
