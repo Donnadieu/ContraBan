@@ -20,13 +20,14 @@ ActiveRecord::Schema.define(version: 20180610154843) do
     t.datetime "created_at"
     t.string "product_name"
     t.string "product_info"
+    t.float "price"
     t.string "image"
   end
 
   create_table "histories", force: :cascade do |t|
     t.integer "user_id"
     t.integer "contract_id"
-    t.float "price"
+    t.float "transfer_price"
     t.datetime "created_at"
   end
 

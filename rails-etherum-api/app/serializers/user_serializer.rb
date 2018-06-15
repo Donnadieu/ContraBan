@@ -1,4 +1,3 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :authentication_token
-  has_many :contracts
+  attributes :id, :email, :authentication_token, :current_contracts
 end

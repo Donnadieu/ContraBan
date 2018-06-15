@@ -23,7 +23,7 @@ export default (state = {is_authenticated: false}, action) => {
     case 'CREATE_CONTRACT':
       const user = Object.assign({}, action.payload.currentUser)
       const newContract =  Object.assign({}, action.payload.contract)
-      user.contracts.push(newContract)
+      user.current_contracts.push(newContract)
 
       return user
     default:

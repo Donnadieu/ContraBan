@@ -23,7 +23,7 @@ class ContractsPage extends Component {
 const mapStateToProps = function(state){
   return {
     currentUser: state.currentUser,
-    userContracts: state.currentUser.contracts
+    userContracts: state.currentUser.current_contracts
   }
 }
 
