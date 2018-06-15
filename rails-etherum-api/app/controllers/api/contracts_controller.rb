@@ -10,7 +10,7 @@ class Api::ContractsController < ApplicationController
     @contract = Contract.new(contract_parmas)
     @contract.blockchain_id = Faker::Bitcoin.address
     if @contract.save
-      @history = History.create(user_id: current_user.id, contract_id: @contract.id, price: params[:price].to_f)
+      @history = History.create(user_id: current_user.id, contract_id: @contract.id, transfer_price: params[:price].to_f)
       render json: @contract, status: :created
     else
       render json: @contract.errors, status: :unprocessable_entity
@@ -19,13 +19,20 @@ class Api::ContractsController < ApplicationController
 
   def update
     @current_owner = User.find_by(email: params[:owner][:email])
-    @new_owner = User.find_or_create_by(email: params[:new_owner][:email])
-    @contract = Contract.find_by(blockchain_id: params[:blockchain_id])
-    binding.pry
+    @new_owner = User.find_by(email: params[:new_owner][:email])
+
+    if @new_owner
+      @contract = Contract.find_by(blockchain_id: params[:blockchain_id])
+      History.create(user_id: @new_owner.id, contract_id: @contract.id, transfer_price: params[:contract][:price])
+    else
+      @new_owner = User.create(email: params[:owner][:email], password: Devise.friendly_token.first(8))
+      @contract = Contract.find_by(blockchain_id: params[:blockchain_id])
+      History.create(user_id: @new_owner.id, contract_id: @contract.id, transfer_price: params[:contract][:price])
+    end
   end
 
   private
     def contract_parmas
-      params.permit(:product_name, :product_info, :image)
+      params.permit(:product_name, :product_info, :image, :price)
     end
 end
