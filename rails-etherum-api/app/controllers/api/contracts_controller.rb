@@ -13,7 +13,7 @@ class Api::ContractsController < ApplicationController
       @history = History.create(user_id: current_user.id, contract_id: @contract.id, transfer_price: params[:price].to_f)
       render json: @contract, status: :created
     else
-      render json: @contract.errors, status: :unprocessable_entity
+      render json: @contract.errors.full_messages, status: :unprocessable_entity
     end
   end
 
