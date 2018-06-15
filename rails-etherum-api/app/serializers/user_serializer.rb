@@ -3,6 +3,6 @@ class UserSerializer < ActiveModel::Serializer
    has_many :current_contracts, each_serializer: ContractSerializer
 
   def current_contracts
-    object.contracts.find_all{ |contract| contract.current_owner == object.id }
+    Contract.all.find_all{ |contract| contract.current_owner == object.id }
   end
 end
