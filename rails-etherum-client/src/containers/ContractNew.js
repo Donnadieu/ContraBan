@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { Field, reduxForm, getFormValues } from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
 import { withRouter } from 'react-router-dom'
 import FileInput from '../components/FileInput'
 import { createContract } from '../actions/actionCreators'

@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import ReactTable from "react-table"
 import {BootstrapTable,
        TableHeaderColumn} from 'react-bootstrap-table'
 import TransferContract from '../containers/TransferContract'
@@ -43,8 +42,6 @@ const ContractOwnerShow = ({ contract }) => {
 
 const mapStateToProps = (state, ownProps ) => {
   const userContract = state.currentUser.current_contracts.find( contract => contract.blockchain_id === ownProps.match.params.contractId )
-  const contract = state.allContracts.find( contract => contract.blockchain_id === ownProps.match.params.contractId )
-
   if (userContract) {
     return { contract: userContract }
   } else {

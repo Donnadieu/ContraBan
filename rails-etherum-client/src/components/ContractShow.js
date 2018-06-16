@@ -3,11 +3,6 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 const ContractShow = ({ contract }) => {
-  var data = [
-    {id:1, name: `${contract.product_name}`, price: '2'},
-    {id:2, name: `${contract.product_name}`, price: '5'},
-    {id:3, name: `${contract.product_name}`, price: '4'}
-  ];
 
   return(
     <div align='center'>
@@ -18,7 +13,6 @@ const ContractShow = ({ contract }) => {
       <p><strong>Product name: </strong>{contract.product_name}</p>
       <p><strong>Product details: </strong></p>
       <p>{contract.product_info}</p>
-
     </div>
   )
 }

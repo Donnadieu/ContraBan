@@ -13,8 +13,6 @@ class FileInput extends React.Component {
   }
 
   render() {
-    const { input: { value } } = this.props
-
     return (<input
       type="file"
       onChange={this.onChange}
