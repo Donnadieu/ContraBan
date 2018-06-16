@@ -2,12 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-const ContractsList = ({userContracts, currentUser, history}) => {
+const ContractsList = ({contracts, currentUser, history, location}) => {
+  // debugger
   const handleClick = (contractId) => {
     return (history.push(`/dashboard/${currentUser.id}/contracts/${contractId}`))
   }
 
-  const renderContracts = userContracts.map(contract => {
+  const renderContracts = contracts.map(contract => {
     return(
       <li key={contract.id}>
         {contract.product_name} <button onClick={() => handleClick(contract.blockchain_id)}>Show</button>
@@ -17,12 +18,23 @@ const ContractsList = ({userContracts, currentUser, history}) => {
 
   return(
     <div>
-      <h2>Your current Contracts</h2>
-      <ol>
+      <ul>
         {renderContracts}
-      </ol>
+      </ul>
     </div>
   )
 }
 
-export default withRouter(connect()(ContractsList))
+const mapStateToProps = (state, match) => {
+  if (match.location.pathname === "/dashboard") {
+    return{
+      contracts: state.currentUser.current_contracts
+    }
+  } else {
+    return{
+      contracts: state.allContracts
+    }
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(ContractsList))

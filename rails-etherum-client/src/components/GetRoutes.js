@@ -13,6 +13,7 @@ import ContractShow from './ContractShow'
 import RegistrationForm from '../containers/RegistrationForm'
 import ContractNew from '../containers/ContractNew'
 import AuthContract from './AuthContract'
+import ContractsList from './ContractsList'
 
 const GetRoutes = ({currentUser, location, match}) =>{
   const renderIf = (currentUser) => {
@@ -22,6 +23,7 @@ const GetRoutes = ({currentUser, location, match}) =>{
           <Redirect from="/" exact to="/dashboard"/>
           <Redirect from="/login" to="/dashboard"/>
           <Redirect from="/signup" to="/dashboard"/>
+          <AuthRoutes exact path="/contracts" component={ContractsList}  currentUser={currentUser} />
           <AuthRoutes exact path="/dashboard" component={Dashboard}  currentUser={currentUser} />
           <AuthRoutes exact path={`/dashboard/${currentUser.id}/contracts/new`} component={ContractNew} currentUser={currentUser}/>
           <AuthContract exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={ContractOwnerShow} currentUser={currentUser}/>
