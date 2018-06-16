@@ -13,8 +13,13 @@ export default (state = [], action) => {
       return allContracts
 
     case 'CREATE_CONTRACT':
-      const contract = Object.assign({}, action.payload.contract)
-      return [...state, contract]
+      const contract = action.payload.contract
+      if (contract !== undefined) {
+        return [...state, contract]
+      } else {
+        return state
+      }
+
     default:
       return state
   }

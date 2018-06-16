@@ -14,27 +14,26 @@ export const loginUser = (values) => {
         }
       })
     })
-      .then(res => {
-        if (res.status === 200) {
-          return res.json()
-        } else {
-          return res.status
-        }
-      })
-      .then(loginResponseJson => {
-        if (Number.isInteger(loginResponseJson)) {
-          let loginAttempt = { status: loginResponseJson, is_authenticated: false }
+    .then(response => {
+      if (response.status !== 200) {
+        response.json()
+        .then(loginResponseJson => {
+          let loginAttempt = { message: loginResponseJson };
           dispatch({
-            type: 'USER_LOGIN',
+            type: 'USER_SIGNUP',
             payload: loginAttempt
            })
-        } else {
-          let currentUser = Object.assign({}, loginResponseJson, {is_authenticated: true})
+        })
+      } else {
+        response.json()
+        .then(loginResponseJson => {
+          let currentUser = Object.assign({}, loginResponseJson, {is_authenticated: true}, { message: `Succesfully Logged in as ${loginResponseJson.email}` })
           dispatch({
             type: 'USER_LOGIN',
             payload: currentUser
            })
-        } history.push('/dashboard')
+        })
+      } history.push('/dashboard')
     })
   }
 }
@@ -77,7 +76,7 @@ export const signupUser = (values) => {
         if (response.status !== 201) {
           response.json()
           .then(signupResponse => {
-            let signupAttempt = { message: signupResponse, is_authenticated: false };
+            let signupAttempt = { message: signupResponse };
             dispatch({
               type: 'USER_SIGNUP',
               payload: signupAttempt
@@ -86,7 +85,7 @@ export const signupUser = (values) => {
         } else {
           response.json()
           .then(signupResponse => {
-            let currentUser = Object.assign({}, signupResponse, {is_authenticated: true})
+            let currentUser = Object.assign({}, signupResponse, {is_authenticated: true}, { message: `Succesfully Created an account as ${signupResponse.email}` })
             dispatch({
               type: 'USER_SIGNUP',
               payload: currentUser
@@ -152,6 +151,15 @@ export const createContract = (values, currentUser) => {
             })
             history.push(`/dashboard/${currentUser.id}/contracts/${contract.blockchain_id}`)
           })
+        } else {
+          res.json()
+          .then(response => {
+            const creationAttempt = { message: response}
+            dispatch({
+              type: 'CREATE_CONTRACT',
+              payload: creationAttempt
+            })
+          })
         }
       })
   }
@@ -173,8 +181,27 @@ export const transferContract = (values, currentUser, dispatch, contract) =>{
       })
     })
     .then(response => {
-      debugger
+      if (response.status === 200) {
+        response.json()
+        .then(user => {
+          const currentUser = user
+          dispatch({
+            type: 'TRANSFER_CONTRACT',
+            payload: currentUser
+          })
+        })
+      }else {
+        response.json()
+        .then(tranferResponse => {
+          const transferAttempt = { message: tranferResponse }
+          dispatch({
+            type: 'TRANSFER_CONTRACT',
+            payload: transferAttempt
+          })
+        })
+      }history.push('/dashboard')
     })
+
   }
 
 }

@@ -6,7 +6,7 @@ export default (state = {is_authenticated: false}, action) => {
         const currentUser = Object.assign({}, action.payload)
         return currentUser
       }else {
-        return state
+        return Object.assign({}, state, action.payload)
       }
 
     case 'USER_LOGOUT':
@@ -18,14 +18,24 @@ export default (state = {is_authenticated: false}, action) => {
         const currentUser = Object.assign({}, action.payload)
         return currentUser
       }else {
-        return state
+        return Object.assign({}, state, action.payload)
       }
     case 'CREATE_CONTRACT':
-      const user = Object.assign({}, action.payload.currentUser)
-      const newContract =  Object.assign({}, action.payload.contract)
-      user.current_contracts.push(newContract)
-
-      return user
+      const newContract =  action.payload.contract
+      if (newContract !== undefined) {
+        const user = Object.assign({}, action.payload.currentUser)
+        user.current_contracts.push(newContract)
+        return user
+      } else {
+        return Object.assign({}, state, action.payload)
+      }
+    case 'TRANSFER_CONTRACT':
+      if (action.payload.currentUser === undefined) {
+        return Object.assign({}, state, action.payload)
+      }else {
+        const currentUser = Object.assign({}, action.payload.currentUser)
+        return currentUser
+      }
     default:
       return state
   }
