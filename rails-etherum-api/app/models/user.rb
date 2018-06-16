@@ -9,5 +9,9 @@ class User < ApplicationRecord
    validates :password, presence: true
 
    has_many :histories
-   has_many :contracts, through: :histories  
+   has_many :contracts, through: :histories
+
+   def current_contracts
+     Contract.all.find_all{ |contract| contract.current_owner == id }
+   end
 end
