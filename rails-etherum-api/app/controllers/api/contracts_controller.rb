@@ -13,6 +13,7 @@ class Api::ContractsController < ApplicationController
       @history = History.create(user_id: current_user.id, contract_id: @contract.id, transfer_price: params[:price].to_f)
       render json: @contract, status: :created
     else
+      binding.pry
       render json: @contract.errors.full_messages, status: :unprocessable_entity
     end
   end
@@ -21,16 +22,21 @@ class Api::ContractsController < ApplicationController
     @current_owner = User.find_by(email: params[:owner][:email])
     @new_owner = User.find_by(email: params[:new_owner][:email])
 
-    if @new_owner
-      @contract = Contract.find_by(blockchain_id: params[:blockchain_id])
-      History.create(user_id: @new_owner.id, contract_id: @contract.id, transfer_price: params[:contract][:price])
-      render json: @current_owner, status: 200
+    if params[:new_owner][:email]
+      if @new_owner
+        @contract = Contract.find_by(blockchain_id: params[:blockchain_id])
+        History.create(user_id: @new_owner.id, contract_id: @contract.id, transfer_price: params[:contract][:price])
+        render json: @current_owner, status: 200
+      else
+        @new_owner = User.create(email: params[:owner][:email], password: Devise.friendly_token.first(8))
+        @contract = Contract.find_by(blockchain_id: params[:blockchain_id])
+        History.create(user_id: @new_owner.id, contract_id: @contract.id, transfer_price: params[:contract][:price])
+        render json: @current_owner, status: 200
+      end
     else
-      @new_owner = User.create(email: params[:owner][:email], password: Devise.friendly_token.first(8))
-      @contract = Contract.find_by(blockchain_id: params[:blockchain_id])
-      History.create(user_id: @new_owner.id, contract_id: @contract.id, transfer_price: params[:contract][:price])
-      render json: @current_owner, status: 200
+      render json:{ message: "Email cannot be blank"}, status: :unprocessable_entity
     end
+
   end
 
   private
