@@ -10,10 +10,6 @@ class ApplicationController < ActionController::API
      :user
     end
 
-    def current_user
-      current_user = User.find_by(email: request.headers['X-User-Email'])
-    end
-
     def set_user
       @user = User.find_by(email: params[:user][:email])
     end

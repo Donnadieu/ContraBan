@@ -6,6 +6,7 @@ class Api::SessionsController < ApplicationController
     @contracts = Contract.all
 
     if !!@user && @user.valid_password?(params[:user][:password])
+      binding.pry
       renew_authentication_token!
       render json: @user, status: 200
     else
