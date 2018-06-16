@@ -10,7 +10,7 @@ export default (state = {is_authenticated: false}, action) => {
       }
 
     case 'USER_LOGOUT':
-    const currentUser = Object.assign({}, {is_authenticated: false})
+    const currentUser = Object.assign({}, {is_authenticated: false}, action.payload)
     return currentUser
 
     case 'USER_SIGNUP':
@@ -23,34 +23,21 @@ export default (state = {is_authenticated: false}, action) => {
     case 'CREATE_CONTRACT':
       const newContract =  action.payload.contract
       if (newContract !== undefined) {
-        const user = Object.assign({}, action.payload.currentUser)
+        const user = Object.assign({}, action.payload.currentUser, { message: 'Succesfully created a contract' })
         user.current_contracts.push(newContract)
         return user
       } else {
         return Object.assign({}, state, action.payload)
       }
     case 'TRANSFER_CONTRACT':
+    debugger
       if (action.payload.currentUser === undefined) {
         return Object.assign({}, state, action.payload)
       }else {
-        const currentUser = Object.assign({}, action.payload.currentUser)
+        const currentUser = Object.assign({}, state, action.payload.currentUser, { message: 'Succesfully transfered ownership' })
         return currentUser
       }
     default:
       return state
   }
 }
-// state = [
-//   {
-//     currentUser: {
-//       contracts: [
-//         'dgvfhsdvbfjbsd5454', 'dknvkldcnv23545363'
-//       ]
-//     }
-//     contracts: [
-//       {id: 'dgvfhsdvbfjbsd5454' ..., history: [{date: '', price: '', owner},...]},
-//       {id: 'dknvkldcnv23545363'..., history: [{date: '', price: '', owner},...]},
-//       {id: 'jadfbajsbfja45646'...}
-//     ]
-//   }
-// ]

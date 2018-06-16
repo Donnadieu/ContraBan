@@ -53,7 +53,8 @@ export const logoutUser = (currentUser) => {
     })
     .then(
       dispatch({
-        type: 'USER_LOGOUT'
+        type: 'USER_LOGOUT',
+        payload: { message: 'Succesfully logged out' }
       })
     )
   }
@@ -183,11 +184,10 @@ export const transferContract = (values, currentUser, dispatch, contract) =>{
     .then(response => {
       if (response.status === 200) {
         response.json()
-        .then(user => {
-          const currentUser = user
+        .then(currentUser => {
           dispatch({
             type: 'TRANSFER_CONTRACT',
-            payload: currentUser
+            payload: {currentUser}
           })
         })
       }else {
