@@ -19,24 +19,22 @@ const ContractNew = ({values, dispatch, handleSubmit, currentUser}) => {
       <div>
         <form onSubmit={handleSubmit(contractInfo)}>
           <div>
-            <label><strong>Name</strong></label>
-            <br></br>
             <Field
               name="name"
-              component="input"
+              component={renderField}
               type="text"
               placeholder="Name"
+              label="Name"
             />
           </div>
           <br></br>
           <div>
-            <label><strong>Details</strong></label>
-            <br></br>
             <Field
               name="details"
-              component="textarea"
+              component={renderTextarea}
               type="text"
               placeholder="Details"
+              label="Details"
             />
           </div>
           <br></br>
@@ -55,7 +53,7 @@ const ContractNew = ({values, dispatch, handleSubmit, currentUser}) => {
             <br></br>
             <Field
               name="price"
-              component="input"
+              component={renderField}
               type="number"
               placeholder="Price"
               normalize={maskMoney}
@@ -73,8 +71,38 @@ const mapStateToProps = (state) => {
     currentUser: state.currentUser,
   }
 }
+const validate = values => {
+  const errors = {}
+  if (!values.name) {
+    errors.name = 'Required'
+  }
+  if (!values.details) {
+    errors.details = 'Required'
+  }
+  return errors
+}
+
+const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+    <div>
+      <strong><label>{label}</label></strong>
+      <div>
+        <input {...input} placeholder={label} type={type}/>
+        {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      </div>
+    </div>
+  )
+const renderTextarea = ({ input, label, type, meta: { touched, error, warning } }) => (
+  <div>
+    <strong><label>{label}</label></strong>
+    <div>
+      <textarea {...input} placeholder={label} type={type}/>
+      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+    </div>
+  </div>
+)
+
 
 export default withRouter(connect(mapStateToProps)(reduxForm({
   form: 'ContractNew',
+  validate
 })(ContractNew)))
-// "contract[histories_attributes][0][price]"
