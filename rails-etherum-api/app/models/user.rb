@@ -6,7 +6,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable
    validates :email, uniqueness: true
    validates :email, presence: true
-   validates :password, length: { minimum: 7 }
    validates_format_of :email,with: Devise::email_regexp
 
    has_many :histories
