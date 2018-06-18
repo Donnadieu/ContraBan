@@ -18,7 +18,7 @@ export const loginUser = (values) => {
       if (response.status !== 200) {
         response.json()
         .then(loginResponseJson => {
-          let loginAttempt = { message: loginResponseJson };
+          let loginAttempt = loginResponseJson
           dispatch({
             type: 'USER_SIGNUP',
             payload: loginAttempt
@@ -109,15 +109,26 @@ export const fetchContracts = (currentUser) => {
       }
     })
     .then(response => {
-      response.json()
-      .then(responseJson => {
-        let allContracts = responseJson.slice(0)
-        dispatch({
-          type: 'FETCH_CONTRACTS',
-          allContracts: allContracts,
-          currentUser: currentUser
+      if (response.status === 200) {
+        response.json()
+        .then(contracts => {
+          let allContracts = contracts.slice(0)
+          dispatch({
+            type: 'FETCH_CONTRACTS',
+            allContracts: allContracts,
+            currentUser: currentUser
+          })
         })
-      })
+      } else {
+        response.json()
+        .then(responseJSON => {
+          dispatch({
+            type: 'FETCH_CONTRACTS',
+            message: responseJSON,
+            currentUser: currentUser
+          })
+        })
+      }
     })
 
   }
