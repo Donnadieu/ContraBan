@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { bindActionCreators } from 'redux';
+import { fetchContracts } from '../actions/actionCreators'
 
 const ContractsList = ({contracts, currentUser, history, location}) => {
-  // debugger
   const handleClick = (contractId) => {
     return (history.push(`/dashboard/${currentUser.id}/contracts/${contractId}`))
   }
@@ -28,13 +29,21 @@ const ContractsList = ({contracts, currentUser, history, location}) => {
 const mapStateToProps = (state, match) => {
   if (match.location.pathname === "/dashboard") {
     return{
+      currentUser: state.currentUser,
       contracts: state.currentUser.current_contracts
     }
   } else {
     return{
+      currentUser: state.currentUser,
       contracts: state.allContracts
     }
   }
 }
 
-export default withRouter(connect(mapStateToProps)(ContractsList))
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    fetchContracts
+  }, dispatch)
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ContractsList))

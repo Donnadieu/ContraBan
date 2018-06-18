@@ -23,10 +23,10 @@ const GetRoutes = ({currentUser, location, match}) =>{
           <Redirect from="/" exact to="/dashboard"/>
           <Redirect from="/login" to="/dashboard"/>
           <Redirect from="/signup" to="/dashboard"/>
-          <AuthRoutes exact path="/contracts" component={ContractsList}  currentUser={currentUser} />
           <AuthRoutes exact path="/dashboard" component={Dashboard}  currentUser={currentUser} />
           <AuthRoutes exact path={`/dashboard/${currentUser.id}/contracts/new`} component={ContractNew} currentUser={currentUser}/>
           <AuthContract exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={ContractOwnerShow} currentUser={currentUser}/>
+          <Route exact path='/contracts' component={ContractsList}/>
           <Route exact path={`/contracts/:contractId`} component={ContractShow} currentUser={currentUser}/>
         </Switch>
       )
@@ -37,6 +37,8 @@ const GetRoutes = ({currentUser, location, match}) =>{
           <Redirect from="/dashboard" exact to="/login"/>
           <Route exact path="/login" component={RegistrationForm}/>
           <Route exact path="/signup" component={RegistrationForm}/>
+          <Route exact path='/contracts' component={ContractsList}/>
+          <Route exact path={`/contracts/:contractId`} component={ContractShow} currentUser={currentUser}/>
         </Switch>
       )
     }
