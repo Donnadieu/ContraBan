@@ -14,23 +14,21 @@ const LoginUser = ({ values, handleSubmit, dispatch, location }) => {
       <h1>Welcome Please Log In or <Link to="/signup">Sign Up</Link></h1>
         <form onSubmit={handleSubmit(loginInfo)}>
         <div>
-          <label><strong>Email</strong></label>
-          <br></br>
           <Field
             name="email"
             component={renderField}
             type="text"
             placeholder="Email"
+            label="Email"
           />
         </div>
         <div>
-          <label><strong>Password</strong></label>
-          <br></br>
           <Field
             name="password"
             component={renderField}
             type="password"
             placeholder="Password"
+            label="Password"
           />
         </div>
         <br></br>
@@ -57,7 +55,7 @@ const validate = values => {
 
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div>
-    <label>{label}</label>
+    <label><strong>{label}</strong></label>
     <div>
       <input {...input} placeholder={label} type={type}/>
       {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
