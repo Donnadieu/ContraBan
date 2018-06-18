@@ -7,6 +7,7 @@ import SignupUser from '../components/SignupUser'
 class Form extends Component {
   render() {
     const { location } = this.props
+
     const renderForm = () => {
       if ( location.pathname === "/login"){
         return (<LoginUser />)
