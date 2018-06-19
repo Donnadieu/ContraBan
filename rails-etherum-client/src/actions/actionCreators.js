@@ -18,9 +18,9 @@ export const loginUser = (values) => {
       if (response.status !== 200) {
         response.json()
         .then(loginResponseJson => {
-          let loginAttempt = loginResponseJson
+          let loginAttempt = {message: loginResponseJson[0]}
           dispatch({
-            type: 'USER_SIGNUP',
+            type: 'USER_LOGIN',
             payload: loginAttempt
            })
         })
