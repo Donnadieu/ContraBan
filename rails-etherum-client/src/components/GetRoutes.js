@@ -8,12 +8,13 @@ import React from 'react'
 import { connect } from 'react-redux';
 import AuthRoutes from './AuthRoutes'
 import Dashboard from '../containers/Dashboard'
-import ContractOwnerShow from './ContractOwnerShow'
-import ContractShow from './ContractShow'
+import ContractOwnerShow from '../containers/ContractOwnerShow'
+import ContractShow from '../containers/ContractShow'
 import RegistrationForm from '../containers/RegistrationForm'
 import ContractNew from '../containers/ContractNew'
 import AuthContract from './AuthContract'
 import ContractsList from './ContractsList'
+import QRcode from "./QRcode"
 
 const GetRoutes = ({currentUser, location, match}) =>{
   const renderIf = (currentUser) => {
@@ -28,6 +29,7 @@ const GetRoutes = ({currentUser, location, match}) =>{
           <AuthContract exact path={`/dashboard/${currentUser.id}/contracts/:contractId`} component={ContractOwnerShow} currentUser={currentUser}/>
           <Route exact path='/contracts' component={ContractsList}/>
           <Route exact path={`/contracts/:contractId`} component={ContractShow} currentUser={currentUser}/>
+          <Route exact path={`/contracts/:contractId/code`} component={QRcode} currentUser={currentUser}/>
         </Switch>
       )
     }else {
