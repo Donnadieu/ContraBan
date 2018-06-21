@@ -4,12 +4,19 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "canvg": "^1.0.0",
+    "d3": "^5.5.0",
+    "dom-to-image": "^2.6.0",
+    "pablo": "0.0.17",
     "qr-code-react": "^1.1.6",
     "qrcode.react": "^0.8.0",
     "react": "^16.4.1",
+    "react-art-svg-renderer": "0.0.1-rc.8",
     "react-bootstrap-table": "^4.3.1",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.4.0",
+    "react-download-svg": "0.0.4",
+    "react-hybrid-canvas": "^1.0.0",
     "react-native-awesome-button": "^1.8.2",
     "react-qr-code": "^0.1.2",
     "react-qr-svg": "^2.1.0",
@@ -20,7 +27,9 @@
     "redux": "^4.0.0",
     "redux-form": "^7.3.0",
     "redux-persist": "^5.9.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "save-svg-as-png": "^1.4.5",
+    "svg-to-canvas": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
