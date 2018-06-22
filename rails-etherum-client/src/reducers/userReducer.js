@@ -30,7 +30,6 @@ export default (state = {is_authenticated: false}, action) => {
         return Object.assign({}, state, action.payload)
       }
     case 'TRANSFER_CONTRACT':
-    debugger
       if (action.payload.currentUser === undefined) {
         return Object.assign({}, state, action.payload)
       }else {

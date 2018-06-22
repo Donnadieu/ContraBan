@@ -12,11 +12,15 @@ class ContractOwnerShow extends Component {
   }
   render(){
     const { contract } = this.props
-    var data = [
-      {id:1, name: `${contract.product_name}`, price: '2'},
-      {id:2, name: `${contract.product_name}`, price: '5'},
-      {id:3, name: `${contract.product_name}`, price: '4'}
-    ];
+
+    const data = contract.histories.map( history => Object.assign({}, history))
+    for (let i = 0; i < data.length; i++) {
+        data[i].id = i + 1
+    }
+
+    function priceFormatter(cell, row) {
+      return `$${cell}`;
+    }
     return(
       <div align='center'>
         <h1>Contract ID: {contract.blockchain_id}</h1>
@@ -36,16 +40,9 @@ class ContractOwnerShow extends Component {
 
         <h3>History</h3>
         <div>
-          <BootstrapTable data={data}>
-            <TableHeaderColumn isKey dataField='id'>
-              ID
-            </TableHeaderColumn>
-            <TableHeaderColumn dataField='name'>
-              Name
-            </TableHeaderColumn>
-            <TableHeaderColumn dataField='value'>
-              Price
-            </TableHeaderColumn>
+          <BootstrapTable data={ data }>
+            <TableHeaderColumn isKey dataField='id'>Transfer ID</TableHeaderColumn>
+            <TableHeaderColumn dataField='transfer_price' dataFormat={priceFormatter}>Transfer Price</TableHeaderColumn>
           </BootstrapTable>
         </div>
       </div>
