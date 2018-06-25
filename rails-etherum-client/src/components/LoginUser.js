@@ -10,30 +10,45 @@ const LoginUser = ({ values, handleSubmit, dispatch, location }) => {
     dispatch(loginUser(values, dispatch))
   }
   return(
-    <div align="center">
-      <h1>Welcome Please Log In or <Link to="/signup">Sign Up</Link></h1>
+    <div className="wrapper">
+      <div className="container">
+        <div className="stencil">
+            <div className="line">
+                <div className="line"></div>
+            </div>
+        </div>
+        <div className="border-triangle"></div>
+        <div className="content-triangle"></div>
+        <div className="enter-triangle-one"></div>
+        <div className="enter-triangle-two"></div>
         <form onSubmit={handleSubmit(loginInfo)}>
-        <div>
-          <Field
-            name="email"
-            component={renderField}
-            type="text"
-            placeholder="Email"
-            label="Email"
-          />
-        </div>
-        <div>
-          <Field
-            name="password"
-            component={renderField}
-            type="password"
-            placeholder="Password"
-            label="Password"
-          />
-        </div>
-        <br></br>
-        <button type="submit" label="submit">Login</button>
-      </form>
+          <div>
+            <label>LOGIN</label>
+          </div>
+          <div className="input-inform">
+            <Field
+              name="email"
+              component={renderField}
+              type="text"
+              placeholder="Email"
+              label="Email"
+            />
+            <Field
+              name="password"
+              component={renderField}
+              type="password"
+              placeholder="Password"
+              label="Password"
+            />
+          </div>
+          <div className="enter">
+            <button type="submit" label="submit" className="btn-lg btn-info">Login</button>
+          </div>
+          <div className="form-links">
+            <span className="glyphicon glyphicon-user text-primary"></span> <Link to="/signup" className="btn-lg btn btn-light">Signup</Link>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
@@ -56,10 +71,8 @@ const validate = values => {
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div>
     <label><strong>{label}</strong></label>
-    <div>
-      <input {...input} placeholder={label} type={type}/>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-    </div>
+    <input {...input} placeholder={label} type={type} className="form-control input-md"/>
+    {touched && ((error && <span style={{color: 'red'}}><strong>{error}</strong></span>) || (warning && <span>{warning}</span>))}
   </div>
 )
 
