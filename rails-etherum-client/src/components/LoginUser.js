@@ -4,6 +4,7 @@ import { loginUser } from '../actions/actionCreators'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Link } from "react-router-dom"
+import { Alert } from 'react-bootstrap'
 
 const LoginUser = ({ values, handleSubmit, dispatch, location }) => {
   const loginInfo = (values) => {
@@ -72,7 +73,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
   <div>
     <label><strong>{label}</strong></label>
     <input {...input} placeholder={label} type={type} className="form-control input-md"/>
-    {touched && ((error && <span style={{color: 'red'}}><strong>{error}</strong></span>) || (warning && <span>{warning}</span>))}
+    {touched && ((error && <Alert bsStyle="danger"><strong>Required</strong></Alert>) || (warning && <span>{warning}</span>))}
   </div>
 )
 
