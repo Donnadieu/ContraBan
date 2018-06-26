@@ -43,7 +43,7 @@ const SignupUser = ({ values, handleSubmit, dispatch, location }) => {
             />
           </div>
           <div className="enter">
-            <button type="submit" label="submit" className="btn-lg btn-info">Login</button>
+            <button type="submit" label="submit" className="btn-lg btn-info">Sigup</button>
           </div>
           <div className="form-links">
             <span className="glyphicon glyphicon-user text-primary"></span> <Link className="btn-lg btn btn-light" to="/login">Login</Link>
