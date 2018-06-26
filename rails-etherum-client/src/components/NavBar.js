@@ -16,7 +16,7 @@ const NavBar = ({currentUser, logoutUser}) => {
         <nav className="navbar navbar-default">
           <div id="navbarCollapse" className="collapse navbar-collapse">
               <ul className="nav navbar-nav">
-                  <li className="active">
+                  <li>
                     <NavLink
                       to="/dashboard"
                     >
@@ -53,7 +53,6 @@ const NavBar = ({currentUser, logoutUser}) => {
     } else {
       return(
         <nav className="navbar navbar-default">
-
         </nav>
       )
     }

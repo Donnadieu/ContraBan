@@ -219,6 +219,7 @@ body {
     border-top: 4px solid #318B98;
     border-radius: 0px;
     padding: 0;
+    background-image: none;
 }
 
 .navbar-nav {
@@ -237,9 +238,10 @@ body {
   font-size: medium;
 }
 
-.navbar-default .navbar-nav>.active>a{
+#navbarCollapse > ul > li > a.active{
   background-color: #318B98;
   color: #fff;
   font-weight: 500;
   font-size: medium;
+  background-image: none;
 }
