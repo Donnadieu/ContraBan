@@ -16,7 +16,7 @@ body {
     position: relative;
 }
 .container .stencil {
-    border: 5px solid #77dff9;
+    border: 5px solid #318B98;
     height: 440px;
     width: 235px;
     transform: matrix(0.85,0.8,-0.08,0.7,19,43);
