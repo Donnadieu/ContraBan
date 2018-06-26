@@ -1,10 +1,9 @@
 body {
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
-  background-image: url(https://images5.alphacoders.com/351/thumb-1920-351885.jpg);
+  background: #dde3e8
 }
-.wrapper,
-.container {
+.wrapper, .container {
     height: 525px;
     width: 337px;
 }
@@ -213,4 +212,34 @@ body {
 
 .container form .form-links {
     padding-top: 25px
+}
+
+.navbar-default {
+    background-color: #12181B;
+    border-top: 4px solid #318B98;
+    border-radius: 0px;
+    padding: 0;
+}
+
+.navbar-nav {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #fff;
+  font-weight: 500;
+  font-size: medium;
+}
+
+.navbar-default .navbar-nav>.active>a{
+  background-color: #318B98;
+  color: #fff;
+  font-weight: 500;
+  font-size: medium;
 }

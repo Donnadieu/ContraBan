@@ -13,38 +13,48 @@ const NavBar = ({currentUser, logoutUser}) => {
   const renderLinks = (currentUser) => {
     if (currentUser.is_authenticated) {
       return (
-        <div style={{ borderBottom: '2px solid black', paddingBottom: '10px', marginBottom: '12px' }}>
-          <NavLink
-            style={{ marginRight: '10px' }}
-            to="/dashboard"
-          >
-            Dashboard
-          </NavLink>
-          <NavLink
-            style={{ marginRight: '10px' }}
-            to="/contracts"
-          >
-            Contracts
-          </NavLink>
-          <NavLink
-            style={{ marginRight: '10px' }}
-            to="/login"
-            onClick={handleSubmit}
-          >
-            Log Out
-          </NavLink>
+        <nav className="navbar navbar-default">
+          <div id="navbarCollapse" className="collapse navbar-collapse">
+              <ul className="nav navbar-nav">
+                  <li className="active">
+                    <NavLink
+                      to="/dashboard"
+                    >
+                    DASHBOARD
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/contracts"
+                    >
+                    CONTRACTS
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/settings"
+                    >
+                    SETTINGS
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/login"
+                      onClick={handleSubmit}
+                    >
+                    LOG OUT
+                    </NavLink>
+                  </li>
+              </ul>
+          </div>
+        </nav>
 
-        </div>
       )
     } else {
       return(
-        <div style={{ borderBottom: '2px solid black', paddingBottom: '10px', marginBottom: '12px' }}>
-          <NavLink
-            style={{ marginRight: '10px' }}
-            to=""
-          >
-          </NavLink>
-        </div>
+        <nav className="navbar navbar-default">
+
+        </nav>
       )
     }
   }
