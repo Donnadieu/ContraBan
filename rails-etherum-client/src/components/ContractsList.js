@@ -3,19 +3,16 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux';
 import { fetchContracts } from '../actions/actionCreators'
+import Contract from '../containers/Contract'
 
-const ContractsList = ({contracts, currentUser, history, location}) => {
-  const handleClick = (contractId) => {
-    return (history.push(`/dashboard/${currentUser.id}/contracts/${contractId}`))
-  }
-
+const ContractsList = ({contracts, currentUser, history}) => {
   const renderContracts = contracts.map(contract => {
     return(
       <li key={contract.id}>
-        {contract.product_name} <button onClick={() => handleClick(contract.blockchain_id)}>Show</button>
+        <Contract contract={contract} history={history} currentUser={currentUser}/>
       </li>
     )
-})
+  })
 
   return(
     <div>
