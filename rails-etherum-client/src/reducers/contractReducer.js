@@ -13,13 +13,20 @@ export default (state = [], action) => {
       return allContracts
 
     case 'CREATE_CONTRACT':
-      const contract = action.payload.contract
+      let contract = action.payload.contract
       if (contract !== undefined) {
         return [...state, contract]
       } else {
         return state
       }
-
+    case 'ADD_LIKE_CONTRACT':
+      let contracts = state.map(contract => Object.assign({}, contract));
+      contracts.map( contract => {
+        if (contract.id === action.contract.id) {
+          contract.likes = action.contract.likes
+        }
+      })
+      return contracts
     default:
       return state
   }

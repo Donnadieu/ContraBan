@@ -18,24 +18,30 @@ class Api::ContractsController < ApplicationController
   end
 
   def update
-    @current_owner = User.find_by(email: params[:owner][:email])
-    @new_owner = User.find_by(email: params[:new_owner][:email])
+    @contract = Contract.find_by(blockchain_id: params[:contract][:blockchain_id])
+    if params[:contract][:likes].nil?
+      @current_owner = User.find_by(email: params[:owner][:email])
+      @new_owner = User.find_by(email: params[:new_owner][:email])
 
-    if params[:new_owner][:email]
-      if @new_owner
-        @contract = Contract.find_by(blockchain_id: params[:blockchain_id])
-        History.create(user_id: @new_owner.id, contract_id: @contract.id, transfer_price: params[:contract][:price])
-        render json: @current_owner, status: 200
+      if params[:new_owner][:email]
+        if @new_owner
+          @contract = Contract.find_by(blockchain_id: params[:blockchain_id])
+          History.create(user_id: @new_owner.id, contract_id: @contract.id, transfer_price: params[:contract][:price])
+          render json: @current_owner, status: 200
+        else
+          @new_owner = User.create(email: params[:owner][:email], password: Devise.friendly_token.first(8))
+          @contract = Contract.find_by(blockchain_id: params[:blockchain_id])
+          History.create(user_id: @new_owner.id, contract_id: @contract.id, transfer_price: params[:contract][:price])
+          render json: @current_owner, status: 200
+        end
       else
-        @new_owner = User.create(email: params[:owner][:email], password: Devise.friendly_token.first(8))
-        @contract = Contract.find_by(blockchain_id: params[:blockchain_id])
-        History.create(user_id: @new_owner.id, contract_id: @contract.id, transfer_price: params[:contract][:price])
-        render json: @current_owner, status: 200
+        render json:{ message: "Email cannot be blank"}, status: :unprocessable_entity
       end
     else
-      render json:{ message: "Email cannot be blank"}, status: :unprocessable_entity
+      @contract.likes += 1
+      @contract.save
+      render json: @contract, status: 200
     end
-
   end
 
   private

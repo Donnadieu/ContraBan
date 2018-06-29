@@ -1,27 +1,24 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { likeContract } from '../actions/actionCreators'
 
 class Contract extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { likes: 0 };
-  }
   handleClick = (contractId) => {
-    debugger
     return (this.props.history.push(`/dashboard/${this.props.currentUser.id}/contracts/${contractId}`))
   }
-
-  handleChange = () => {
-    let likes = this.state.likes + 1
-    this.setState({
-      likes: likes
-    })
-  }
   render() {
-    const { contract } = this.props
+    const { contract, likeContract } = this.props
     return (
-      <p>{contract.product_name} <button onClick={() => this.handleClick(contract.blockchain_id)}>Show</button><button onClick={() => this.handleChange()}>Like</button> <strong>{this.state.likes}</strong></p>
+      <p>{contract.product_name} <button onClick={() => this.handleClick(contract.blockchain_id)}>Show</button><button onClick={ likeContract }>Like</button> <strong>{contract.likes}</strong></p>
     )
   }
 }
 
-export default Contract
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return({
+    likeContract: () => dispatch(likeContract(ownProps.contract, ownProps.currentUser))
+  })
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(Contract))
