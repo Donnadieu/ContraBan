@@ -28,7 +28,16 @@ class LoginUser extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    alert('A name was submitted: ' + this.state.password)
+    return fetch(`http://localhost:3000/api/auth/login`, {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(
+        { "user": {
+          "email" : event.target.elements.email.value,
+          "password" : event.target.elements.password.value
+        }
+      })
+    })
   }
 
   handleBlur = (event) => {
@@ -92,7 +101,7 @@ class LoginUser extends Component {
         <label>Password:</label>
         <div className={`form-group${this.errorClass(this.state.formErrors.password)}`}>
           <input
-            type="text"
+            type="password"
             value={this.state.password}
             onChange={this.handleChange}
             name="password"

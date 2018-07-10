@@ -92,7 +92,7 @@ class LoginUser extends Component {
         <label>Password:</label>
         <div className={`form-group${this.errorClass(this.state.formErrors.password)}`}>
           <input
-            type="text"
+            type="password"
             value={this.state.password}
             onChange={this.handleChange}
             name="password"
