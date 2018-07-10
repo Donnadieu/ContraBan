@@ -15,23 +15,24 @@ export const loginUser = (values) => {
       })
     })
     .then(response => {
-      if (response.status !== 200) {
-        response.json()
+      if (response.status === 401) {
+        return response.json()
         .then(loginResponseJson => {
           let loginAttempt = {message: loginResponseJson[0]}
           dispatch({
             type: 'USER_LOGIN',
             payload: loginAttempt
-           })
+            })
         })
       } else {
-        response.json()
+        return response.json()
         .then(loginResponseJson => {
           let currentUser = Object.assign({}, loginResponseJson, {is_authenticated: true}, { message: `Succesfully Logged in as ${loginResponseJson.email}` })
+          debugger
           dispatch({
             type: 'USER_LOGIN',
             payload: currentUser
-           })
+          })
         })
       } history.push('/dashboard')
     })
