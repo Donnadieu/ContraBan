@@ -32,13 +32,6 @@ const NavBar = ({currentUser, logoutUser}) => {
                   </li>
                   <li>
                     <NavLink
-                      to="/settings"
-                    >
-                    SETTINGS
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
                       to="/login"
                       onClick={handleSubmit}
                     >
