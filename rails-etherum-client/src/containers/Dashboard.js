@@ -15,11 +15,13 @@ class Dashboard extends Component {
       return (history.push(`/dashboard/${currentUser.id}/contracts/new`))
     }
     return(
-      <div className="Dashboard">
-        <h1>Welcome {currentUser.email}</h1>
-        <button onClick={handleClick}>Create a New Contract</button>
-        <h2>Your current Contracts</h2>
-        <ContractsPage />
+      <div class="container">
+        <div class="row">
+          <h1>Welcome {currentUser.email}</h1>
+          <button onClick={handleClick}>Create a New Contract</button>
+          <h2>Your current Contracts</h2>
+          <ContractsPage />
+        </div>
       </div>
     )
   }
