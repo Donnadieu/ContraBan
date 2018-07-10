@@ -28,7 +28,6 @@ export const loginUser = (values) => {
         return response.json()
         .then(loginResponseJson => {
           let currentUser = Object.assign({}, loginResponseJson, {is_authenticated: true}, { message: `Succesfully Logged in as ${loginResponseJson.email}` })
-          debugger
           dispatch({
             type: 'USER_LOGIN',
             payload: currentUser
