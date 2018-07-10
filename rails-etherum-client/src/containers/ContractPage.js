@@ -5,15 +5,9 @@ import ContractsList from '../components/ContractsList'
 
 class ContractsPage extends Component {
   render() {
-    const {userContracts, currentUser, history} = this.props
-
-    const handleClick = () => {
-      return (history.push(`/dashboard/${currentUser.id}/contracts/new`))
-    }
+    const {userContracts, currentUser} = this.props
     return(
       <div>
-        <button onClick={() => handleClick()}>Create a New Contract</button>
-        <h2>Your current Contracts</h2>
         <ContractsList userContracts={userContracts} currentUser={currentUser}/>
       </div>
     )

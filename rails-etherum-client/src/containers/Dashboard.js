@@ -10,10 +10,15 @@ class Dashboard extends Component {
     this.props.fetchContracts(this.props.currentUser)
   }
   render() {
-    const { currentUser } = this.props
+    const { currentUser, history } = this.props
+    const handleClick = () => {
+      return (history.push(`/dashboard/${currentUser.id}/contracts/new`))
+    }
     return(
       <div className="Dashboard">
         <h1>Welcome {currentUser.email}</h1>
+        <button onClick={handleClick}>Create a New Contract</button>
+        <h2>Your current Contracts</h2>
         <ContractsPage />
       </div>
     )
