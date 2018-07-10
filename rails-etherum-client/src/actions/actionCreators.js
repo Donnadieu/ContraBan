@@ -212,36 +212,5 @@ export const transferContract = (values, currentUser, dispatch, contract) =>{
         })
       }history.push('/dashboard')
     })
-
-  }
-
-}
-
-export const likeContract = (contract, currentUser, dispatch) => {
-  return(dispatch) => {
-    dispatch({type: 'LIKING_CONTRACT'})
-    return fetch(`http://localhost:3000/api/auth/contracts/${contract.blockchain_id}`,{
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-User-Email': currentUser.email,
-        'X-User-Token': currentUser.authentication_token
-      },
-      body: JSON.stringify({
-        "contract":{
-          "blockchain_id": contract.blockchain_id,
-          "likes": contract.likes
-        }
-      })
-    })
-    .then(response => {
-      response.json()
-      .then(contract => {
-        dispatch({
-          type: 'ADD_LIKE_CONTRACT',
-          contract: contract
-        })
-      })
-    })
   }
 }

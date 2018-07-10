@@ -6,7 +6,7 @@ import {CopyToClipboard} from 'react-copy-to-clipboard'
 class ContractShow extends Component {
   state = {
     copied: false,
-  };
+  }
   render(){
     const { contract } = this.props
     return(

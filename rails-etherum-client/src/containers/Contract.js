@@ -10,15 +10,9 @@ class Contract extends Component {
   render() {
     const { contract, likeContract } = this.props
     return (
-      <p>{contract.product_name} <button onClick={() => this.handleClick(contract.blockchain_id)}>Show</button><button onClick={ likeContract }>Like</button> <strong>{contract.likes}</strong></p>
+      <p>{contract.product_name} <button onClick={() => this.handleClick(contract.blockchain_id)}>Show</button></p>
     )
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return({
-    likeContract: () => dispatch(likeContract(ownProps.contract, ownProps.currentUser))
-  })
-}
-
-export default withRouter(connect(null, mapDispatchToProps)(Contract))
+export default withRouter((Contract))
