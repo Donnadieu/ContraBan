@@ -4,11 +4,12 @@ import{
   combineReducers
 } from 'redux'
 import thunk from 'redux-thunk'
-import userReducer from './reducers/userReducer';
-import {reducer as formReducer} from 'redux-form';
+import userReducer from './reducers/userReducer'
+import {reducer as formReducer} from 'redux-form'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import contractReducer from './reducers/contractReducer';
+import contractReducer from './reducers/contractReducer'
+import messageReducer from './reducers/messageReducer'
 
 
 const persistConfig = {
@@ -21,7 +22,8 @@ const reducers = combineReducers({
   allContracts: contractReducer,
   currentUser: userReducer,
   form: formReducer,
-  contractNew: formReducer
+  contractNew: formReducer,
+  message: messageReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers)

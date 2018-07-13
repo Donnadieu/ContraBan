@@ -20,17 +20,21 @@ export const loginUser = (values) => {
         .then(loginResponseJson => {
           let loginAttempt = {message: loginResponseJson[0]}
           dispatch({
-            type: 'USER_LOGIN',
+            type: 'UNSUCCESSFUL_USER_LOGIN',
             payload: loginAttempt
             })
         })
       } else {
         return response.json()
         .then(loginResponseJson => {
-          let currentUser = Object.assign({}, loginResponseJson, {is_authenticated: true}, { message: `Succesfully Logged in as ${loginResponseJson.email}` })
+          let currentUser = Object.assign({}, loginResponseJson, {is_authenticated: true})
+          let message = `Succesfully Logged in as ${loginResponseJson.email}`
           dispatch({
-            type: 'USER_LOGIN',
-            payload: currentUser
+            type: 'SUCCESSFUL_USER_LOGIN',
+            payload: {
+              currentUser,
+              message
+            }
           })
         })
       } history.push('/dashboard')
@@ -54,7 +58,9 @@ export const logoutUser = (currentUser) => {
     .then(
       dispatch({
         type: 'USER_LOGOUT',
-        payload: { message: 'Succesfully logged out' }
+        payload: {
+          message: 'Succesfully logged out'
+        }
       })
     )
   }
@@ -77,19 +83,25 @@ export const signupUser = (values) => {
         if (response.status !== 201) {
           response.json()
           .then(signupResponse => {
-            let signupAttempt = { message: signupResponse };
+            let message = signupResponse
             dispatch({
-              type: 'USER_SIGNUP',
-              payload: signupAttempt
+              type: 'UNSUCCESSFUL_USER_SIGNUP',
+              payload: {
+                message
+              }
              })
           })
         } else {
           response.json()
           .then(signupResponse => {
-            let currentUser = Object.assign({}, signupResponse, {is_authenticated: true}, { message: `Succesfully Created an account as ${signupResponse.email}` })
+            let currentUser = Object.assign({}, signupResponse, {is_authenticated: true})
+            let message = `Succesfully Created an account as ${signupResponse.email}`
             dispatch({
-              type: 'USER_SIGNUP',
-              payload: currentUser
+              type: 'SUCCESSFUL_USER_SIGNUP',
+              payload: {
+                currentUser,
+                message
+              }
              })
           })
         }history.push('/dashboard')

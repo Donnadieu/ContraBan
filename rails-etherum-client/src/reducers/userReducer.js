@@ -1,21 +1,21 @@
-export default (state = {is_authenticated: false}, action) => {
+export default (state = { is_authenticated: false }, action) => {
   switch ( action.type ) {
 
-    case 'USER_LOGIN':
-      if (action.payload.is_authenticated === true) {
-        const currentUser = Object.assign({}, action.payload)
+    case 'SUCCESSFUL_USER_LOGIN':
+      if (action.payload.currentUser.is_authenticated === true) {
+        const currentUser = Object.assign({}, action.payload.currentUser)
         return currentUser
       }else {
-        return Object.assign({}, state, action.payload)
+        return state
       }
 
     case 'USER_LOGOUT':
-    const currentUser = Object.assign({}, {is_authenticated: false}, action.payload)
-    return currentUser
+      const currentUser = Object.assign({}, {is_authenticated: false})
+      return currentUser
 
-    case 'USER_SIGNUP':
-      if (action.payload.is_authenticated === true) {
-        const currentUser = Object.assign({}, action.payload)
+    case 'SUCCESSFUL_USER_SIGNUP':
+      if (action.payload.currentUser.is_authenticated === true) {
+        const currentUser = Object.assign({}, action.payload.currentUser)
         return currentUser
       }else {
         return Object.assign({}, state, action.payload)
