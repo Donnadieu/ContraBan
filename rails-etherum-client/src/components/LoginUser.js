@@ -12,7 +12,7 @@ const LoginUser = ({ values, handleSubmit, dispatch, location }) => {
   }
   return(
     <div className="wrapper">
-      <div className="container">
+      <div className="container-login">
         <div className="stencil">
             <div className="line">
                 <div className="line"></div>

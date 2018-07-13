@@ -1,9 +1,10 @@
+
 body {
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
   background: #dde3e8
 }
-.wrapper, .container {
+.wrapper, .container-login {
     height: 525px;
     width: 337px;
 }
@@ -12,10 +13,10 @@ body {
     position: absolute;
     top: -10px; right: 0; bottom: 0; left: 0;
 }
-.container {
+.container-login {
     position: relative;
 }
-.container .stencil {
+.container-login .stencil {
     border: 5px solid #318B98;
     height: 440px;
     width: 235px;
@@ -23,21 +24,21 @@ body {
     position: absolute;
     z-index: 1;
 }
-.container .stencil .line {
+.container-login .stencil .line {
     border: 3px solid #77dff9 ;
     height: 94.6%;
     margin: 11px 0;
     border-right: none;
     border-left: none;
 }
-.container .border-triangle  {
+.container-login .border-triangle  {
     position: absolute;
     z-index: 10;
     border-top: 257px solid transparent;
     border-left: 337px solid rgba(255,255,255,0.5);
     border-bottom: 268px solid transparent;
 }
-.container .content-triangle {
+.container-login .content-triangle {
     position: absolute;
     left: 12px;
     top: 22px;
@@ -46,9 +47,9 @@ body {
     border-bottom: 245px solid transparent;
     z-index: 15;
 }
-.container .content-triangle:before,
-.container .content-triangle:after,
-.container form .title:after {
+.container-login .content-triangle:before,
+.container-login .content-triangle:after,
+.container-login form .title:after {
     content: '';
     position: absolute;
     width: 10px;
@@ -56,17 +57,17 @@ body {
     border: 1px solid #71d2ec;
 
 }
-.container .content-triangle:before {
+.container-login .content-triangle:before {
     border-bottom: none;
     border-right: none;
     transform: matrix(0.85,0.64,-0,0.7,-295,-203);
 }
-.container .content-triangle:after {
+.container-login .content-triangle:after {
     border-top: none;
     border-right: none;
     transform: matrix(0.85,-0.7,-0,0.7,-295,197);
 }
-.container .enter-triangle-one {
+.container-login .enter-triangle-one {
     position: absolute;
     border-top: 90px solid transparent;
     border-left: 135px solid #192042;
@@ -76,7 +77,7 @@ body {
     left: 153px;
     z-index: 5;
 }
-.container .enter-triangle-one:before {
+.container-login .enter-triangle-one:before {
     content: '';
     position: absolute;
     border-top: 120px solid transparent;
@@ -89,7 +90,7 @@ body {
     filter: blur(20px);
     z-index: 5;
 }
-.container .enter-triangle-two {
+.container-login .enter-triangle-two {
     position: absolute;
     border-top: 111px solid transparent;
     border-left: 108px solid rgba(40, 65, 143, 0.2);
@@ -99,73 +100,73 @@ body {
     left: 148px;
     z-index: 6;
 }
-.container form {
+.container-login form {
     position: absolute;
     z-index: 20;
     top: 166px;
     left: 30px;
 }
-.container form:before,
-.container form:after,
-.container form .input-inform:before,
-.container form .title:before {
+.container-login form:before,
+.container-login form:after,
+.container-login form .input-inform:before,
+.container-login form .title:before {
     content: '';
     position: absolute;
     background: rgba(204,204,204,0.13);
     height: 1px;
 }
-.container form:before {
+.container-login form:before {
     width: 315px;
     transform: rotate(37.2deg);
     left: -28px;
     top: -11px;
 }
-.container form:after {
+.container-login form:after {
     width: 320px;
     left: -31px;
     bottom: 35px;
     transform: rotate(-39deg);
 }
-.container form .title {
+.container-login form .title {
     border-bottom: 1px solid #67e2fb;
     padding-bottom: 9px;
     margin: 0 0 30px 9px;
     width: 95px;
 }
-.container form .title:before {
+.container-login form .title:before {
     width: 26px;
     background: #67e2fb;
     top: 58px;
 }
-.container form .title:after {
+.container-login form .title:after {
     border-top: none;
     border-left: none;
     width: 8px;
     height: 9px;
     transform: matrix(0.85,-0.7,0.8,0.6,241,37);
 }
-.container form label {
+.container-login form label {
     display: block;
     color: #6b707d;
     font-size: 15px;
     font-weight: 300;
     line-height: 24px;
 }
-.container form .input-inform:before {
+.container-login form .input-inform:before {
     width: 1px;
     height: 396px;
     left: -5px;
     top: -102px;
 }
-.container form input:focus {
+.container-login form input:focus {
     outline: none;
 }
-.container form label:last-child {
+.container-login form label:last-child {
     font-weight: bold;
     letter-spacing: 1px;
 }
-.container form input[type="text"],
-.container form input[type="password"] {
+.container-login form input[type="text"],
+.container-login form input[type="password"] {
     border: none;
     border-bottom: 1px solid #f2f2f2;
     display: block;
@@ -173,14 +174,14 @@ body {
     color: #71d2ec;
 }
 
-.container form #forgot-pas,
-.container form .enter,
-.container form .enter label,
-.container form #enter {
+.container-login form #forgot-pas,
+.container-login form .enter,
+.container-login form .enter label,
+.container-login form #enter {
     cursor: pointer;
     position: relative;
 }
-.container form #forgot-pas {
+.container-login form #forgot-pas {
     color: #c5c5c5;
     background: #fff;
     border: 1px solid #f2f2f2;
@@ -190,27 +191,27 @@ body {
     top: 6px;
     left: 25px;
 }
-.container form .enter {
+.container-login form .enter {
     top: 10px;
 } */
-.container form .enter label:before {
+.container-login form .enter label:before {
     content: '\1F512';
     color: rgba(197, 197, 197,0.6);
     left: 10px;
     top: 7px;
     position: relative;
 }
-.container form .enter label:hover:before {
+.container-login form .enter label:hover:before {
     content: '\1F513';
 }
-.container form #enter {
+.container-login form #enter {
     color: #fff;
     border: none;
     font-size: 10px;
     background: transparent;
 }
 
-.container form .form-links {
+.container-login form .form-links {
     padding-top: 25px
 }
 
@@ -251,4 +252,48 @@ body {
     margin-bottom: 0;
     border: 1px solid transparent;
     border-radius: 0.25rem;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+body
+{
+    font-family: 'Lato', 'sans-serif';
+    }
+.profile
+{
+    display: inline-block;
+    }
+figcaption.ratings
+{
+    margin-top:20px;
+    }
+figcaption.ratings a
+{
+    color:#f1c40f;
+    font-size:11px;
+    }
+figcaption.ratings a:hover
+{
+    color:#f39c12;
+    text-decoration:none;
+    }
+.divider
+{
+    border-top:1px solid rgba(0,0,0,0.1);
+    }
+.emphasis
+{
+    border-top: 4px solid transparent;
+    }
+.emphasis:hover
+{
+    border-top: 4px solid #1abc9c;
+    }
+.emphasis h2
+{
+    margin-bottom:0;
+    }
+
+.row {
+    text-align: center;
 }
