@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { fetchContracts } from '../actions/actionCreators'
 import Contract from '../containers/Contract'
 
-const ContractsList = ({contracts, currentUser, history}) => {
+const ContractsList = ({contracts, currentUser, history, location}) => {
   const renderContracts = contracts.map(contract => {
     return(
       <li key={contract.id}>
@@ -16,6 +16,7 @@ const ContractsList = ({contracts, currentUser, history}) => {
 
   return(
     <div>
+      {location.pathname === "/dashboard" && <h1>Your Contracts</h1>}
       <ul>
         {renderContracts}
       </ul>
