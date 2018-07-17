@@ -3,17 +3,23 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import ContractsPage from './ContractPage'
 import { bindActionCreators } from 'redux';
-import { fetchContracts } from '../actions/actionCreators'
+import { fetchContracts, toggleContracts } from '../actions/actionCreators'
+import { Link } from 'react-router-dom'
+import ContractsList from '../components/ContractsList'
 
 class Dashboard extends Component {
+
   componentDidMount() {
     this.props.fetchContracts(this.props.currentUser)
   }
+  handleClick = (e) => {
+    return (this.props.history.push(e.target.attributes.href.value))
+  }
+  renderContracts = () => {
+    this.props.toggleContracts()
+  }
   render() {
-    const { currentUser, history } = this.props
-    const handleClick = () => {
-      return (history.push(`/dashboard/${currentUser.id}/contracts/new`))
-    }
+    const { currentUser, history, isHidden } = this.props
     return(
       <div className="container">
       	<div className="row">
@@ -30,13 +36,13 @@ class Dashboard extends Component {
                   <div className="col-xs-12 emphasis">
                     <h2><strong>{currentUser.current_contracts.length}</strong></h2>
                     <p>Number of Contracts</p>
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-danger"><span className="	glyphicon glyphicon-off"></span> Your Contracts </button>
+                      <div className="dropdown">
+                        <button type="button" className="btn btn-danger" onClick={ () => this.renderContracts()}><span className="	glyphicon glyphicon-off"></span> My Contracts </button>
                         <button type="button" className="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                           <span className="sr-only">Toggle Dropdown</span>
                         </button>
                         <div className="dropdown-menu">
-                          <a className="dropdown-item" href="#">Action</a>
+                          <a className="dropdown-item">Action</a>
                           <a className="dropdown-item" href="#">Another action</a>
                           <a className="dropdown-item" href="#">Something else here</a>
                           <div className="dropdown-divider"></div>
@@ -47,6 +53,7 @@ class Dashboard extends Component {
                 </div>
               </div>
             </div>
+            {(isHidden === true || isHidden === undefined) && <ContractsList/>}
           </div>
         </div>
       </div>
@@ -57,12 +64,13 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
+    isHidden: state.allContracts.isHidden
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    fetchContracts
+    fetchContracts, toggleContracts
   }, dispatch)
 }
 
