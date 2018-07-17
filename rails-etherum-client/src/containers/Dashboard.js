@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
-import ContractsPage from './ContractPage'
 import { bindActionCreators } from 'redux';
 import { fetchContracts, toggleContracts } from '../actions/actionCreators'
 import { Link } from 'react-router-dom'
@@ -19,7 +18,7 @@ class Dashboard extends Component {
     this.props.toggleContracts()
   }
   render() {
-    const { currentUser, history, isHidden } = this.props
+    const { currentUser, isHidden } = this.props
     return(
       <div className="container">
       	<div className="row">
@@ -53,7 +52,7 @@ class Dashboard extends Component {
                 </div>
               </div>
             </div>
-            {(isHidden === true || isHidden === undefined) && <ContractsList/>}
+            {(isHidden === true)&& <ContractsList/>}
           </div>
         </div>
       </div>
