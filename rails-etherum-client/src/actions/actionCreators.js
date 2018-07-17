@@ -226,3 +226,14 @@ export const transferContract = (values, currentUser, dispatch, contract) =>{
     })
   }
 }
+
+export const toggleContracts = () =>{
+  return (dispatch) => {
+    dispatch({type: 'LOADING_CONTRACTS'})
+    return(
+      dispatch({
+        type: 'TOGGLE_CONTRACTS'
+      })
+    )
+  }
+}
