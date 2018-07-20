@@ -12,6 +12,7 @@ cd rails-etherum-app
 cd api
 bundle install
 rails db:setup
+bundle exec rails server
 cd ..
 cd client
 npm install
