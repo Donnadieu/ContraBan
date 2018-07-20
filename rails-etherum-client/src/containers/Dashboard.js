@@ -41,7 +41,7 @@ class Dashboard extends Component {
                           <span className="sr-only">Toggle Dropdown</span>
                         </button>
                         <div className="dropdown-menu">
-                          <a className="dropdown-item">Action</a>
+                          <Link className="dropdown-item" to={`/dashboard/${currentUser.id}/contracts/new`} >New Contract</Link>
                           <a className="dropdown-item" href="#">Another action</a>
                           <a className="dropdown-item" href="#">Something else here</a>
                           <div className="dropdown-divider"></div>
@@ -52,7 +52,7 @@ class Dashboard extends Component {
                 </div>
               </div>
             </div>
-            {(isHidden === true)&& <ContractsList/>}
+            {(isHidden === false)&& <ContractsList/>}
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
-    isHidden: state.allContracts.isHidden
+    isHidden: !state.currentUser.isHidden
   }
 }
 
