@@ -7,7 +7,7 @@ This app is written in React utilizing Redux to maintain the state. It is built 
 This app allows you to create a unique identifier (smart contract) to represent ownership of a Collectible by deploying the information into the etherum blockchain. You can also transfer ownership, verify authenticity and see the history of  your Collectible.
 
 ```shell
-git clone git@github.com:itzsaga/foodie-view.git
+git clone https://github.com/Donnadieu/rails-etherum-app.git
 cd foodie-view
 bundle install
 rails db:create
