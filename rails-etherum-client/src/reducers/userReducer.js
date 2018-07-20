@@ -36,6 +36,8 @@ export default (state = { is_authenticated: false }, action) => {
         const currentUser = Object.assign({}, state, action.payload.currentUser, { message: 'Succesfully transfered ownership' })
         return currentUser
       }
+    case 'TOGGLE_CONTRACTS':
+      return Object.assign({}, state, {isHidden: !state.isHidden})
     default:
       return state
   }

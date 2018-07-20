@@ -27,8 +27,6 @@ export default (state = [], action) => {
         }
       })
       return contracts
-    case 'TOGGLE_CONTRACTS':
-      return { ...state, isHidden: !state.isHidden }
     default:
       return state
   }
