@@ -16,53 +16,64 @@ const ContractNew = ({values, dispatch, handleSubmit, currentUser}) => {
       return parseFloat(v)
     }
     return(
-      <div>
-        <form onSubmit={handleSubmit(contractInfo)}>
-          <div>
-            <Field
-              name="name"
-              component={renderField}
-              type="text"
-              placeholder="Name"
-              label="Name"
-            />
-          </div>
-          <br></br>
-          <div>
-            <Field
-              name="details"
-              component={renderTextarea}
-              type="text"
-              placeholder="Details"
-              label="Details"
-            />
-          </div>
-          <br></br>
-          <div>
-            <label><strong>Image</strong></label>
-            <br></br>
-            <Field
-              type="file"
-              name="image"
-              component={FileInput}
-            />
-          </div>
-          <br></br>
-          <div>
-            <label><strong>Price</strong></label>
-            <br></br>
-            <Field
-              name="price"
-              component={renderField}
-              type="number"
-              placeholder="Price"
-              normalize={maskMoney}
-            />
-          </div>
-          <br></br>
-          <button type="submit" label="submit">Deploy</button>
-        </form>
-      </div>
+      <div className="center-container">
+    		<div className="main">
+    			<h1 className="w3layouts_head">Create a New Contract</h1>
+    				<div className="w3layouts_main_grid">
+    					<form onSubmit={handleSubmit(contractInfo)} className="w3_form_post">
+    						<div className="w3_agileits_main_grid w3l_main_grid">
+    							<span className="agileits_grid">
+                    <Field
+                      name="name"
+                      component={renderField}
+                      type="text"
+                      placeholder="Name"
+                      label="Name"
+                    />
+    							</span>
+    						</div>
+    						<div className="w3_agileits_main_grid w3l_main_grid">
+    							<span className="agileits_grid">
+                    <Field
+                      name="details"
+                      component={renderTextarea}
+                      type="text"
+                      placeholder="Details"
+                      label="Details"
+                    />
+    							</span>
+    						</div>
+    						<div className="w3_agileits_main_grid w3l_main_grid">
+    							<span className="agileits_grid">
+                    <label><strong>Image</strong></label>
+                    <Field
+                      type="file"
+                      name="image"
+                      component={FileInput}
+                    />
+    							</span>
+    						</div>
+    						<div className="w3_agileits_main_grid w3l_main_grid">
+    							<span className="agileits_grid">
+                    <label><strong>Price</strong></label>
+                    <Field
+                      name="price"
+                      component={renderField}
+                      type="number"
+                      placeholder="Price"
+                      normalize={maskMoney}
+                    />
+    							</span>
+    						</div>
+    					<div className="w3_main_grid">
+    						<div className="w3_main_grid_right">
+    							<input type="submit" value="Submit"></input>
+    						</div>
+    					</div>
+    				</form>
+    			</div>
+    		</div>
+    	</div>
     )
 }
 
