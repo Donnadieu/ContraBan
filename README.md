@@ -13,12 +13,14 @@ cd api
 bundle install
 rails db:setup
 bundle exec rails server
+```
+In another terminal:
+```shell
 cd ..
 cd client
 npm install
 npm start
 ```
-
 ## Contributing ##
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/Donnadieu/rails-etherum-app. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](https://github.com/itzsaga/my-fave-food/blob/master/CONTRIBUTING.md) code of conduct.
