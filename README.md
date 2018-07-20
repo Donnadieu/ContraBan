@@ -8,16 +8,15 @@ This app allows you to create a unique identifier (smart contract) to represent 
 
 ```shell
 git clone https://github.com/Donnadieu/rails-etherum-app.git
-cd foodie-view
+cd rails-etherum-app
+cd api
 bundle install
-rails db:create
-rails db:migrate
-rails db:seed
+rails db:setup
+cd ..
 cd client
 npm install
+npm start
 ```
-
-Then `rake start` to start both servers.
 
 ## Contributing ##
 
