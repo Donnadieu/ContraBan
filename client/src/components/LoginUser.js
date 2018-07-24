@@ -73,7 +73,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
   <div>
     <label><strong>{label}</strong></label>
     <input {...input} placeholder={label} type={type} className="form-control input-md"/>
-    {touched && ((error && <Alert bsStyle="danger"><strong>Required</strong></Alert>) || (warning && <span>{warning}</span>))}
+    {touched && ((error && <Alert bsStyle="danger"><strong>{error}</strong></Alert>) || (warning && <span>{warning}</span>))}
   </div>
 )
 
