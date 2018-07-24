@@ -18,7 +18,7 @@ export const loginUser = (values) => {
       if (response.status === 401) {
         return response.json()
         .then(loginResponseJson => {
-          let loginAttempt = {message: loginResponseJson[0]}
+          let loginAttempt = loginResponseJson
           dispatch({
             type: 'UNSUCCESSFUL_USER_LOGIN',
             payload: loginAttempt
