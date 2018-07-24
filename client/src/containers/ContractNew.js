@@ -107,7 +107,7 @@ const renderTextarea = ({ input, label, type, meta: { touched, error, warning } 
     <strong><label>{label}</label></strong>
     <div>
       <textarea {...input} placeholder={label} type={type}/>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      {touched && ((error && <span><strong>{error}</strong></span>) || (warning && <span>{warning}</span>))}
     </div>
   </div>
 )
