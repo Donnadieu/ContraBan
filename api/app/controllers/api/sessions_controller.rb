@@ -12,8 +12,7 @@ class Api::SessionsController < ApplicationController
       if @user == nil
         render json:{ message: "User does not exist or Invalid Credentials"}, status: 401
       else
-        @user.errors.add(:email,"Does not exist or Invalid Password")
-        render json: @user.errors.full_messages, status: 401
+        render json:{ message: "User does not exist or Invalid Credentials"}, status: 401
       end
     end
   end
