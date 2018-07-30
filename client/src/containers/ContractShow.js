@@ -11,7 +11,9 @@ class ContractShow extends Component {
     const { contract } = this.props
     return(
       <div align='center'>
-        <h1>Contract ID: {contract.blockchain_id}</h1>
+        <h1>Certificate of Authenticity</h1>
+        <h2>Contract ID: {contract.blockchain_id}</h2>
+        <br></br>
         <img src={process.env.PUBLIC_URL + `/uploads/contract/image/${contract.id}/${contract.blockchain_id}.jpg`} alt="logo" height="250" width="250"/>
         <h2>Contract information</h2>
         <p><strong>Price:</strong> ${contract.price}</p>

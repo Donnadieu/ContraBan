@@ -30,6 +30,7 @@ gem "attr_encrypted", "~> 3.0.0"
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'ethereum.rb', :git => 'https://github.com/EthWorks/ethereum.rb.git'
+gem  'eth'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors', require: 'rack/cors'
 
