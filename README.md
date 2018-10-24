@@ -1,6 +1,6 @@
 # ContraBan #
 
-This app is written in React utilizing Redux to maintain the state. It is built on a Rails back end setup to serve as an API end point. Uses etherum gem to connect to etherum blockchain
+This app is written in React utilizing Redux to maintain state. It is built on a Rails back end setup to serve as an API end point. Uses etherum gem to connect to etherum blockchain
 
 ## Usage ##
 
