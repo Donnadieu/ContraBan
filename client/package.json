@@ -1,27 +1,24 @@
 {
-  "name": "ContraBan",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": {
-    "/api":{
-      "target":"htpps://localhost:3001"
-    }
-  },
+  "proxy": "https://localhost:3001",
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
     "canvg": "^1.0.0",
     "d3": "^5.5.0",
     "dom-to-image": "^2.6.0",
+    "history": "^4.7.2",
     "pablo": "0.0.17",
     "qr-code-react": "^1.1.6",
     "qrcode.react": "^0.8.0",
-    "react": "^16.4.1",
+    "react": "^16.6.3",
     "react-art-svg-renderer": "0.0.1-rc.8",
     "react-bootstrap": "^0.32.1",
     "react-bootstrap-table": "^4.3.1",
     "react-copy-to-clipboard": "^5.0.1",
-    "react-dom": "^16.4.0",
+    "react-dom": "^16.6.3",
     "react-download-svg": "0.0.4",
     "react-hybrid-canvas": "^1.0.0",
     "react-native-awesome-button": "^1.8.2",
@@ -29,7 +26,7 @@
     "react-qr-svg": "^2.1.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "^2.1.1",
+    "react-scripts": "2.1.1",
     "react-table": "^6.8.6",
     "redux": "^4.0.0",
     "redux-form": "^7.3.0",
@@ -39,9 +36,21 @@
     "svg-to-canvas": "^1.0.1"
   },
   "scripts": {
-    "start": "http-server -a localhost -p 8000",
+    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.7"
   }
 }

@@ -10,6 +10,7 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import contractReducer from './reducers/contractReducer'
 import messageReducer from './reducers/messageReducer'
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 const persistConfig = {
@@ -30,9 +31,8 @@ const persistedReducer = persistReducer(persistConfig, reducers)
 
 const middleware = [thunk]
 
-export const store = createStore(
-  persistedReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+export const store = createStore(persistedReducer, composeWithDevTools(
   applyMiddleware(...middleware),
-)
+));
+
 export const persistor = persistStore(store);

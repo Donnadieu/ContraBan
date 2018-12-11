@@ -4,7 +4,7 @@ import {
   Redirect,
 } from "react-router-dom"
 
-const AuthRoutes = ({ component: Component, ...rest, currentUser }) => (
+const AuthRoutes = ({ component: Component, rest, currentUser }) => (
   <Route
     {...rest}
     render={props =>

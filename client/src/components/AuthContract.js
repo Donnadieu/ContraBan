@@ -4,7 +4,7 @@ import {
   Redirect,
 } from "react-router-dom"
 
-const AuthRoutes = ({ component: Component, ...rest, currentUser, location }) => {
+const AuthRoutes = ({ component: Component, rest, currentUser, location }) => {
   const isUserOwner = (currentUser, location) => {
     const contract = currentUser.current_contracts.find( contract => contract.blockchain_id === location.pathname.split("/")[4])
     return !(contract === undefined || contract === null)
