@@ -1,0 +1,25 @@
+{
+  "name": "contraban",
+  "version": "1.0.0",
+  "description": "This app is written in React utilizing Redux to maintain state. It is built on a Rails back end setup to serve as an API end point. Uses etherum gem to connect to etherum blockchain",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "cd client && npm install && npm run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Donnadieu/ContraBan.git"
+  },
+  "author": "Donnadieu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Donnadieu/ContraBan/issues"
+  },
+  "homepage": "https://github.com/Donnadieu/ContraBan#readme"
+}
