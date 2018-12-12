@@ -7,10 +7,10 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "localhost:3000/"
+    origins "localhost:3000"
     resource '*',
       headers: :any,
-      methods: [:get, :post, :options, :delete, :patch],
+      methods: [:get, :post, :put, :patch, :delete, :options, :head],
       expose: :any,
       max_age: 600
   end

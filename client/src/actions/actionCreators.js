@@ -4,7 +4,7 @@ import history from '../history'
 export const loginUser = (values) => {
   return (dispatch) => {
     dispatch({type: 'LOGGIN_ATTEMPT'})
-    return fetch(`http://localhost:3000/api/auth/login`, {
+    return fetch(`/auth/login`, {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(
@@ -20,8 +20,8 @@ export const loginUser = (values) => {
         .then(loginResponseJson => {
           let loginAttempt = loginResponseJson
           dispatch({
-            type: 'UNSUCCESSFUL_USER_LOGIN',
-            payload: loginAttempt
+              type: 'UNSUCCESSFUL_USER_LOGIN',
+              payload: loginAttempt
             })
         })
       } else {
@@ -45,7 +45,7 @@ export const loginUser = (values) => {
 export const logoutUser = (currentUser) => {
   return (dispatch) => {
     dispatch({type: 'LOGGING_USER_OUT'})
-    return fetch(`http://localhost:3000/api/auth/logout`,{
+    return fetch(`/auth/logout`,{
       method: 'delete',
       headers: {
         'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export const logoutUser = (currentUser) => {
 export const signupUser = (values) => {
   return (dispatch) => {
     dispatch({type: 'SIGNUP_ATTEMPT'})
-    return fetch(`http://localhost:3000/api/auth/users`, {
+    return fetch(`/auth/users`, {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(
@@ -80,6 +80,7 @@ export const signupUser = (values) => {
         }),
       })
       .then(response => {
+        debugger
         if (response.status !== 201) {
           response.json()
           .then(signupResponse => {
@@ -112,7 +113,7 @@ export const signupUser = (values) => {
 export const fetchContracts = (currentUser) => {
   return (dispatch) => {
     dispatch({type: 'LOADING_CONTRACTS'})
-    return fetch(`http://localhost:3000/api/auth/contracts`, {
+    return fetch(`/auth/contracts`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
@@ -154,7 +155,7 @@ export const createContract = (values, currentUser) => {
     formData.append("image", values.image)
     formData.append("price", values.price)
     dispatch({type: 'CREATING_CONTRACT'})
-    return fetch(`http://localhost:3000/api/auth/contracts`, {
+    return fetch(`/auth/contracts`, {
       method: 'post',
       headers: {
         'X-User-Email': currentUser.email,
@@ -191,7 +192,7 @@ export const createContract = (values, currentUser) => {
 export const transferContract = (values, currentUser, dispatch, contract) =>{
   return (dispatch) => {
     dispatch({type: 'TRANSFERING_CONTRACT'})
-    return fetch(`http://localhost:3000/api/auth/contracts/${contract.blockchain_id}`, {
+    return fetch(`/auth/contracts/${contract.blockchain_id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
