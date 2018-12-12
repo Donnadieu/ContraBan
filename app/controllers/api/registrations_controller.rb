@@ -3,7 +3,6 @@ class Api::RegistrationsController < ApplicationController
   before_action :set_user
 
   def create
-    binding.pry
     @user = User.new(user_params)
     if @user.save
       render json: @user, status: :created

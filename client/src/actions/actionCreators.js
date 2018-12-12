@@ -80,7 +80,6 @@ export const signupUser = (values) => {
         }),
       })
       .then(response => {
-        debugger
         if (response.status !== 201) {
           response.json()
           .then(signupResponse => {
