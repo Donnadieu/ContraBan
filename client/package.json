@@ -10,6 +10,7 @@
     "d3": "^5.5.0",
     "dom-to-image": "^2.6.0",
     "history": "^4.7.2",
+    "http-proxy-middleware": "^0.19.1",
     "pablo": "0.0.17",
     "qr-code-react": "^1.1.6",
     "qrcode.react": "^0.8.0",
@@ -29,12 +30,12 @@
     "react-scripts": "2.1.1",
     "react-table": "^6.8.6",
     "redux": "^4.0.0",
+    "redux-devtools-extension": "2.13.7",
     "redux-form": "^7.3.0",
     "redux-persist": "^5.9.1",
     "redux-thunk": "^2.3.0",
     "save-svg-as-png": "^1.4.5",
-    "svg-to-canvas": "^1.0.1",
-    "redux-devtools-extension": "2.13.7"
+    "svg-to-canvas": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
