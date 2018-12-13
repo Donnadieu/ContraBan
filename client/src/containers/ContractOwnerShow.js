@@ -12,10 +12,13 @@ class ContractOwnerShow extends Component {
   }
   render(){
     const { contract } = this.props
+    let data = []
 
-    const data = contract.histories.map( history => Object.assign({}, history))
-    for (let i = 0; i < data.length; i++) {
-        data[i].id = i + 1
+    if(contract.histories !== undefined){
+      data = contract.histories.map( history => Object.assign({}, history))
+      for (let i = 0; i < data.length; i++) {
+          data[i].id = i + 1
+      }
     }
 
     function priceFormatter(cell, row) {
@@ -27,7 +30,7 @@ class ContractOwnerShow extends Component {
         <img src={process.env.PUBLIC_URL + `/uploads/contract/image/${contract.id}/${contract.blockchain_id}.jpg`} alt="logo" height="250" width="250"/>
         <TransferContract contract={contract} />
         <h2>Contract information</h2>
-        <p><strong>Price:</strong> ${contract.price}</p>
+        <p><strong>Price:</strong> {contract.price}</p>
         <p><strong>Product name: </strong>{contract.product_name}</p>
         <p><strong>Product details: </strong></p>
         <p>{contract.product_info}</p>
@@ -40,10 +43,10 @@ class ContractOwnerShow extends Component {
 
         <h3>History</h3>
         <div>
-          <BootstrapTable data={ data }>
-            <TableHeaderColumn isKey dataField='id'>Transfer ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='transfer_price' dataFormat={priceFormatter}>Transfer Price</TableHeaderColumn>
-          </BootstrapTable>
+          {data !== [] ? <h4>No Transfers Have Been Made</h4> :   <BootstrapTable data={ data }>
+                                                                    <TableHeaderColumn isKey dataField='id'>Transfer ID</TableHeaderColumn>
+                                                                    <TableHeaderColumn dataField='transfer_price' dataFormat={priceFormatter}>Transfer Price</TableHeaderColumn>
+                                                                  </BootstrapTable>}
         </div>
       </div>
     )
@@ -51,7 +54,9 @@ class ContractOwnerShow extends Component {
 }
 
 const mapStateToProps = (state, ownProps ) => {
-  const userContract = state.currentUser.current_contracts.find( contract => contract.blockchain_id === ownProps.match.params.contractId )
+  const contractId = ownProps.location.pathname.split("/")[ownProps.location.pathname.split("/").length - 1]
+  const userContract = state.currentUser.current_contracts.find( contract => contract.blockchain_id === contractId )
+
   if (userContract) {
     return { contract: userContract }
   } else {

@@ -4,7 +4,7 @@ import history from '../history'
 export const loginUser = (values) => {
   return (dispatch) => {
     dispatch({type: 'LOGGIN_ATTEMPT'})
-    return fetch(`api/auth/login`, {
+    return fetch(`http://localhost:3001/api/auth/login`, {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(
@@ -15,7 +15,7 @@ export const loginUser = (values) => {
       })
     })
     .then(response => {
-      if (response.status === 401) {
+      if (response.status !== 200) {
         return response.json()
         .then(loginResponseJson => {
           let loginAttempt = loginResponseJson
@@ -37,7 +37,8 @@ export const loginUser = (values) => {
             }
           })
         })
-      } history.push('/dashboard')
+      }
+      history.push('/dashboard')
     })
   }
 }
@@ -45,7 +46,7 @@ export const loginUser = (values) => {
 export const logoutUser = (currentUser) => {
   return (dispatch) => {
     dispatch({type: 'LOGGING_USER_OUT'})
-    return fetch(`api/auth/logout`,{
+    return fetch(`http://localhost:3001/api/auth/logout`,{
       method: 'delete',
       headers: {
         'Content-Type': 'application/json',
@@ -69,7 +70,7 @@ export const logoutUser = (currentUser) => {
 export const signupUser = (values) => {
   return (dispatch) => {
     dispatch({type: 'SIGNUP_ATTEMPT'})
-    return fetch(`api/auth/users`, {
+    return fetch(`http://localhost:3001/api/auth/users`, {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(
@@ -83,12 +84,10 @@ export const signupUser = (values) => {
         if (response.status !== 201) {
           response.json()
           .then(signupResponse => {
-            let message = signupResponse
+            let signupAttempt = signupResponse
             dispatch({
               type: 'UNSUCCESSFUL_USER_SIGNUP',
-              payload: {
-                message
-              }
+              payload: signupAttempt
              })
           })
         } else {
@@ -112,7 +111,7 @@ export const signupUser = (values) => {
 export const fetchContracts = (currentUser) => {
   return (dispatch) => {
     dispatch({type: 'LOADING_CONTRACTS'})
-    return fetch(`api/auth/contracts`, {
+    return fetch(`http://localhost:3001/api/auth/contracts`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
@@ -154,7 +153,7 @@ export const createContract = (values, currentUser) => {
     formData.append("image", values.image)
     formData.append("price", values.price)
     dispatch({type: 'CREATING_CONTRACT'})
-    return fetch(`https://contraban.herokuapp.com/api/auth/contracts`, {
+    return fetch(`http://localhost:3001/api/auth/contracts`, {
       method: 'post',
       headers: {
         'X-User-Email': currentUser.email,
@@ -191,7 +190,7 @@ export const createContract = (values, currentUser) => {
 export const transferContract = (values, currentUser, dispatch, contract) =>{
   return (dispatch) => {
     dispatch({type: 'TRANSFERING_CONTRACT'})
-    return fetch(`api/auth/contracts/${contract.blockchain_id}`, {
+    return fetch(`http://localhost:3001/api/auth/contracts/${contract.blockchain_id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

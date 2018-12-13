@@ -1,20 +1,23 @@
 export default (state = [], action) => {
   switch (action.type) {
     case 'SUCCESSFUL_USER_LOGIN':
-      let message = action.payload.message
-      return message
+      return action.payload.message
     case 'UNSUCCESSFUL_USER_LOGIN':
-      message = action.payload.message
-      return message
+      if (!!action.payload.message) {
+        return action.payload.message
+      }else{
+        return action.payload.error
+      }
     case 'USER_LOGOUT':
-      message = action.payload.message
-      return message
+      return action.payload.message
     case 'UNSUCCESSFUL_USER_SIGNUP':
-      message = action.payload.message
-      return message
+      if (!!action.payload.message) {
+        return action.payload.message
+      }else{
+        return action.payload.error
+      }
     case 'SUCCESSFUL_USER_SIGNUP':
-      message = action.payload.message
-      return message
+      return action.payload.message
     default:
       return state
   }
