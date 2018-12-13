@@ -27,9 +27,9 @@ class Dashboard extends Component {
               <div className="col-sm-12">
                 <div className="col-lg-12" align="left">
                   <h1 align="center">Welcome {currentUser.email}</h1>
-                  <p><strong>About: </strong></p>
-                  <p><strong>Interests: </strong></p>
-                  <p><strong>Skills: </strong></p>
+                  // <p><strong>About: </strong></p>
+                  // <p><strong>Interests: </strong></p>
+                  // <p><strong>Skills: </strong></p>
                 </div>
                 <div className="col-xs-12 divider text-center">
                   <div className="col-xs-12 emphasis">
@@ -42,10 +42,10 @@ class Dashboard extends Component {
                         </button>
                         <div className="dropdown-menu">
                           <Link className="dropdown-item" to={`/dashboard/${currentUser.id}/contracts/new`} >New Contract</Link>
-                          <a className="dropdown-item" href="#">Another action</a>
-                          <a className="dropdown-item" href="#">Something else here</a>
-                          <div className="dropdown-divider"></div>
-                          <a className="dropdown-item" href="#">Separated link</a>
+                          // <a className="dropdown-item" href="#">Another action</a>
+                          // <a className="dropdown-item" href="#">Something else here</a>
+                          // <div className="dropdown-divider"></div>
+                          // <a className="dropdown-item" href="#">Separated link</a>
                         </div>
                     </div>
                   </div>
