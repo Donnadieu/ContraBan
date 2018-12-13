@@ -154,7 +154,7 @@ export const createContract = (values, currentUser) => {
     formData.append("image", values.image)
     formData.append("price", values.price)
     dispatch({type: 'CREATING_CONTRACT'})
-    return fetch(`api/auth/contracts`, {
+    return fetch(`https://contraban.herokuapp.com/api/auth/contracts`, {
       method: 'post',
       headers: {
         'X-User-Email': currentUser.email,
