@@ -4,7 +4,7 @@ import history from '../history'
 export const loginUser = (values) => {
   return (dispatch) => {
     dispatch({type: 'LOGGIN_ATTEMPT'})
-    return fetch(`/auth/login`, {
+    return fetch(`api/auth/login`, {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(
@@ -45,7 +45,7 @@ export const loginUser = (values) => {
 export const logoutUser = (currentUser) => {
   return (dispatch) => {
     dispatch({type: 'LOGGING_USER_OUT'})
-    return fetch(`/auth/logout`,{
+    return fetch(`api/auth/logout`,{
       method: 'delete',
       headers: {
         'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ export const signupUser = (values) => {
 export const fetchContracts = (currentUser) => {
   return (dispatch) => {
     dispatch({type: 'LOADING_CONTRACTS'})
-    return fetch(`/auth/contracts`, {
+    return fetch(`api/auth/contracts`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ export const createContract = (values, currentUser) => {
     formData.append("image", values.image)
     formData.append("price", values.price)
     dispatch({type: 'CREATING_CONTRACT'})
-    return fetch(`/auth/contracts`, {
+    return fetch(`api/auth/contracts`, {
       method: 'post',
       headers: {
         'X-User-Email': currentUser.email,
@@ -191,7 +191,7 @@ export const createContract = (values, currentUser) => {
 export const transferContract = (values, currentUser, dispatch, contract) =>{
   return (dispatch) => {
     dispatch({type: 'TRANSFERING_CONTRACT'})
-    return fetch(`/auth/contracts/${contract.blockchain_id}`, {
+    return fetch(`api/auth/contracts/${contract.blockchain_id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
