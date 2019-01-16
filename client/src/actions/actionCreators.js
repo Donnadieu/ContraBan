@@ -4,7 +4,7 @@ import history from '../history'
 export const loginUser = (values) => {
   return (dispatch) => {
     dispatch({type: 'LOGGIN_ATTEMPT'})
-    return fetch(`/auth/login`, {
+    return fetch(`api/auth/login`, {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(
