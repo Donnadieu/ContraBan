@@ -14,7 +14,7 @@ class ContractShow extends Component {
         <h1>Certificate of Authenticity</h1>
         <h2>Contract ID: {contract.blockchain_id}</h2>
         <br></br>
-        <img src={require(`../images/contract/image/${contract.id}/${contract.blockchain_id}.jpg`)} alt="logo" height="250" width="250"/>
+        <img src={require(`../images/${contract.blockchain_id}.jpg`)} alt="logo" height="250" width="250"/>
         <h2>Contract information</h2>
         <p><strong>Price:</strong> ${contract.price}</p>
         <p><strong>Product name: </strong>{contract.product_name}</p>
