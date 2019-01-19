@@ -27,7 +27,7 @@ class ContractOwnerShow extends Component {
     return(
       <div align='center'>
         <h1>Contract ID: {contract.blockchain_id}</h1>
-        <img src={require(`../images/${contract.blockchain_id}.jpg`)} alt="logo" height="250" width="250"/>
+        <img src={require(`../contracts/${contract.blockchain_id}.jpg`)} alt="logo" height="250" width="250"/>
         <TransferContract contract={contract} />
         <h2>Contract information</h2>
         <p><strong>Price:</strong> {contract.price}</p>
