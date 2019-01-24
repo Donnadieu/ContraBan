@@ -3,7 +3,7 @@ class Api::ContractsController < ApplicationController
   skip_before_action :set_user
   def index
     @contracts = Contract.all
-    render json: @contracts.as_json(except: [:histories, :image], methods: :price), status: 200
+    render json: @contracts.as_json(except: [:histories], methods: :price), status: 200
   end
 
   def create
@@ -46,6 +46,6 @@ class Api::ContractsController < ApplicationController
 
   private
     def contract_parmas
-      params.permit(:product_name, :product_info, :image, :price)
+      params.permit(:product_name, :product_info, :price)
     end
 end
