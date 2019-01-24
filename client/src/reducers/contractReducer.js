@@ -19,13 +19,13 @@ export default (state = [], action) => {
       } else {
         return state
       }
-    case 'ADD_LIKE_CONTRACT':
-      let contracts = state.map(contract => Object.assign({}, contract));
-      contracts.map( contract => {
-        if (contract.id === action.contract.id) {
-          contract.likes = action.contract.likes
-        }
-      })
+      case 'ADD_URL_TO_CONTRACT':
+        let contracts = [...state.filter( contract => contract.blockchain_id !== action.payload.id)]
+        let findContract = state.find( contract => contract.blockchain_id === action.payload.id)
+
+        contract['image_url'] = action.payload.url
+        contracts.push(contract)
+
       return contracts
     default:
       return state

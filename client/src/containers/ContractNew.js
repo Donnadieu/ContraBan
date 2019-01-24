@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { withRouter } from 'react-router-dom'
-import FileInput from '../components/FileInput'
+import ImageUpload from '../components/ImageUpload'
 import { createContract } from '../actions/actionCreators'
 
 const ContractNew = ({values, dispatch, handleSubmit, currentUser}) => {
@@ -49,7 +49,7 @@ const ContractNew = ({values, dispatch, handleSubmit, currentUser}) => {
                     <Field
                       type="file"
                       name="image"
-                      component={FileInput}
+                      component={ImageUpload}
                     />
     							</span>
     						</div>
