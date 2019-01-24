@@ -5,8 +5,6 @@ class Contract < ApplicationRecord
   validates :product_info, presence: true
   validate :name_and_info_cannot_be_undfeined
 
-  mount_uploader :image, ImageUploader
-
    def current_owner
     self.histories.last.user_id
    end
