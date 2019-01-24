@@ -3,7 +3,6 @@ class Contract < ApplicationRecord
   has_many :users, through: :histories
   validates :product_name, presence: true
   validates :product_info, presence: true
-  validates :image, presence: true
   validate :name_and_info_cannot_be_undfeined
 
   mount_uploader :image, ImageUploader
