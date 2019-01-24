@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import history from '../history'
+import app from '../firebase/index'
 
 export const loginUser = (values) => {
   return (dispatch) => {
@@ -147,11 +148,12 @@ export const fetchContracts = (currentUser) => {
 
 export const createContract = (values, currentUser) => {
   return (dispatch) => {
+
     const formData = new FormData()
     formData.append("product_name", values.name)
     formData.append("product_info", values.details)
-    formData.append("image", values.image)
     formData.append("price", values.price)
+
     dispatch({type: 'CREATING_CONTRACT'})
     return fetch(`/api/auth/contracts`, {
       method: 'post',
@@ -165,14 +167,21 @@ export const createContract = (values, currentUser) => {
         if (res.status === 201 ) {
           res.json()
           .then(contract => {
-            dispatch({
-              type: 'CREATE_CONTRACT',
-              payload: {
-                contract: contract,
-                currentUser: currentUser
-              }
-            })
-            history.push(`/dashboard/${currentUser.id}/contracts/${contract.blockchain_id}`)
+            app.storage().ref(`images/${contract.blockchain_id}`).put(values.image)
+              .then ( () => {
+                app.storage().ref('images').child(contract.blockchain_id).getDownloadURL()
+                  .then( url => {
+                    contract["url"] = url
+                    dispatch({
+                      type: 'CREATE_CONTRACT',
+                      payload: {
+                        contract: contract,
+                        currentUser: currentUser
+                      }
+                    })
+                    history.push(`/dashboard/${currentUser.id}/contracts/${contract.blockchain_id}`)
+                  })
+              })
           })
         } else {
           res.json()
