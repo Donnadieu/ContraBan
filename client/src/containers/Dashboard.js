@@ -38,7 +38,7 @@ class Dashboard extends Component {
                           <span className="sr-only">Toggle Dropdown</span>
                         </button>
                         <div className="dropdown-menu">
-                          <Link className="dropdown-item" to={`/dashboard/${currentUser.id}/contracts/new`} >New Contract</Link>
+                          <Link className="dropdown-item" to={`/contracts/new`} >New Contract</Link>
                         </div>
                     </div>
                   </div>
