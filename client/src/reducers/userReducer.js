@@ -38,6 +38,16 @@ export default (state = { is_authenticated: false }, action) => {
       }
     case 'TOGGLE_CONTRACTS':
       return Object.assign({}, state, {isHidden: !state.isHidden})
+    case 'ADD_URL_TO_CONTRACT':
+      let findContract = [...state.current_contracts].find(contract => action.payload.contract.blockchain_id ===  contract.blockchain_id)
+
+      if (findContract) {
+        findContract['url'] = action.payload.url
+        return Object.assign({}, state, action.payload.currentUser)
+      }else {
+        return state
+      }
+
     default:
       return state
   }

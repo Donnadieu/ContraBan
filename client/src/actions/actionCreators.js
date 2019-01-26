@@ -169,18 +169,14 @@ export const createContract = (values, currentUser) => {
           .then(contract => {
             app.storage().ref(`images/${contract.blockchain_id}`).put(values.image)
               .then ( () => {
-                app.storage().ref('images').child(contract.blockchain_id).getDownloadURL()
-                  .then( url => {
-                    contract["url"] = url
-                    dispatch({
-                      type: 'CREATE_CONTRACT',
-                      payload: {
-                        contract: contract,
-                        currentUser: currentUser
-                      }
-                    })
-                    history.push(`/dashboard/${currentUser.id}/contracts/${contract.blockchain_id}`)
-                  })
+                dispatch({
+                  type: 'CREATE_CONTRACT',
+                  payload: {
+                    contract: contract,
+                    currentUser: currentUser
+                  }
+                })
+                history.push(`/dashboard/${currentUser.id}/contracts/${contract.blockchain_id}`)
               })
           })
         } else {
@@ -243,5 +239,21 @@ export const toggleContracts = () =>{
         type: 'TOGGLE_CONTRACTS'
       })
     )
+  }
+}
+
+export const addUrlToContract = contract => {
+  return dispatch => {
+    dispatch({type: 'ADDING_URL'})
+    return app.storage().ref('images').child(contract.blockchain_id).getDownloadURL()
+    .then( url => {
+      dispatch({
+        type: 'ADD_URL_TO_CONTRACT',
+        payload: {
+          contract:  contract,
+          url: url
+        }
+      })
+    })
   }
 }

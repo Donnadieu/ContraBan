@@ -2,10 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
+import { bindActionCreators } from 'redux'
+import { addUrlToContract } from '../actions/actionCreators'
 
 class ContractShow extends Component {
   state = {
     copied: false,
+  }
+  componentDidMount(){
+    this.props.addUrlToContract(this.props.contract)
   }
   render(){
     const { contract } = this.props
@@ -33,7 +38,6 @@ class ContractShow extends Component {
 
 const mapStateToProps = (state, ownProps ) => {
   const contract = state.allContracts.find( contract => contract.blockchain_id === ownProps.match.params.contractId )
-
   if (contract) {
     return { contract }
   } else {
@@ -41,4 +45,10 @@ const mapStateToProps = (state, ownProps ) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(ContractShow))
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addUrlToContract
+  }, dispatch)
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ContractShow))

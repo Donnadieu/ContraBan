@@ -5,10 +5,15 @@ import {BootstrapTable,
        TableHeaderColumn} from 'react-bootstrap-table'
 import TransferContract from '../containers/TransferContract'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
+import { bindActionCreators } from 'redux'
+import { addUrlToContract } from '../actions/actionCreators'
 
 class ContractOwnerShow extends Component {
   state = {
     copied: false
+  }
+  componentDidMount(){
+    this.props.addUrlToContract(this.props.contract)
   }
   render(){
     const { contract } = this.props
@@ -57,11 +62,16 @@ const mapStateToProps = (state, ownProps ) => {
   const contractId = ownProps.location.pathname.split("/")[ownProps.location.pathname.split("/").length - 1]
   const userContract = state.currentUser.current_contracts.find( contract => contract.blockchain_id === contractId )
 
-  if (userContract) {
-    return { contract: userContract }
-  } else {
-    return { contract: {} }
+  return {
+    contract: userContract,
+    currentUser: state.currentUser
   }
 }
 
-export default withRouter(connect(mapStateToProps)(ContractOwnerShow))
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addUrlToContract
+  }, dispatch)
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ContractOwnerShow))
