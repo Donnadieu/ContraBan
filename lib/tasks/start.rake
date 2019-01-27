@@ -1,3 +1,8 @@
-task :production do
-  exec 'NPM_CONFIG_PRODUCTION=true npm run postinstall && foreman start'
+namespace :start do
+  task :development do
+    exec 'heroku local -f Procfile.dev'
+  end
 end
+
+desc 'Start development server'
+task :start => 'start:development'
