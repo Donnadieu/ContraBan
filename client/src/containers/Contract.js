@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { addUrlToContract } from '../actions/actionCreators'
+import { bindActionCreators } from 'redux'
 
 class Contract extends Component {
-  handleClick = (contractId) => {
-    return (this.props.history.push(`/dashboard/${this.props.currentUser.id}/contracts/${contractId}`))
+  handleClick = () => {
+    this.props.addUrlToContract(this.props.contract)
   }
   render() {
     const { contract } = this.props
@@ -13,4 +16,10 @@ class Contract extends Component {
   }
 }
 
-export default withRouter((Contract))
+const mapDispatchToProps = (dispatch) =>{
+  return bindActionCreators({
+    addUrlToContract
+  }, dispatch)
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(Contract))

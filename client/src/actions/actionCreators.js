@@ -109,16 +109,10 @@ export const signupUser = (values) => {
   }
 }
 
-export const fetchContracts = (currentUser) => {
+export const fetchContracts = () => {
   return (dispatch) => {
     dispatch({type: 'LOADING_CONTRACTS'})
     return fetch(`/api/auth/contracts`, {
-      method: 'get',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-User-Email': currentUser.email,
-        'X-User-Token': currentUser.authentication_token
-      }
     })
     .then(response => {
       if (response.status === 200) {
@@ -128,7 +122,6 @@ export const fetchContracts = (currentUser) => {
           dispatch({
             type: 'FETCH_CONTRACTS',
             allContracts: allContracts,
-            currentUser: currentUser
           })
         })
       } else {
@@ -136,8 +129,7 @@ export const fetchContracts = (currentUser) => {
         .then(responseJSON => {
           dispatch({
             type: 'FETCH_CONTRACTS',
-            message: responseJSON,
-            currentUser: currentUser
+            message: responseJSON
           })
         })
       }
@@ -176,7 +168,7 @@ export const createContract = (values, currentUser) => {
                     currentUser: currentUser
                   }
                 })
-                history.push(`/dashboard/${currentUser.id}/contracts/${contract.blockchain_id}`)
+                history.push(`/contracts/${contract.blockchain_id}`)
               })
           })
         } else {
@@ -247,6 +239,7 @@ export const addUrlToContract = contract => {
     dispatch({type: 'ADDING_URL'})
     return app.storage().ref('images').child(contract.blockchain_id).getDownloadURL()
     .then( url => {
+      console.log(url);
       dispatch({
         type: 'ADD_URL_TO_CONTRACT',
         payload: {
@@ -254,6 +247,7 @@ export const addUrlToContract = contract => {
           url: url
         }
       })
+      history.push(`/contracts/${contract.blockchain_id}`)
     })
   }
 }

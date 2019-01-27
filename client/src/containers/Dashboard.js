@@ -9,7 +9,7 @@ import ContractsList from '../components/ContractsList'
 class Dashboard extends Component {
 
   componentDidMount() {
-    this.props.fetchContracts(this.props.currentUser)
+    this.props.fetchContracts()
   }
   handleClick = (e) => {
     return (this.props.history.push(e.target.attributes.href.value))

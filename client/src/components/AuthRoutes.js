@@ -2,7 +2,9 @@ import React from 'react'
 import {
   Route,
   Redirect,
+  withRouter
 } from "react-router-dom"
+import { connect } from 'react-redux';
 
 const AuthRoutes = ({ component: Component, rest, currentUser }) => (
   <Route
@@ -22,4 +24,10 @@ const AuthRoutes = ({ component: Component, rest, currentUser }) => (
   />
 );
 
-export default AuthRoutes
+const mapStateToProps = state => {
+  return{
+    currentUser: state.currentUser
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(AuthRoutes))
