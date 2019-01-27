@@ -1,5 +1,5 @@
 class Api::ContractsController < ApplicationController
-  acts_as_token_authentication_handler_for User
+  acts_as_token_authentication_handler_for User, except: [:index, :show]
   skip_before_action :set_user
   def index
     @contracts = Contract.all
