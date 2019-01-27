@@ -71,7 +71,7 @@ export const logoutUser = (currentUser) => {
 export const signupUser = (values) => {
   return (dispatch) => {
     dispatch({type: 'SIGNUP_ATTEMPT'})
-    return fetch(`/api/auth/users`, {
+    return fetch(`api/auth/users`, {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(
