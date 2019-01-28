@@ -160,16 +160,20 @@ export const createContract = (values, currentUser) => {
           res.json()
           .then(contract => {
             app.storage().ref(`images/${contract.blockchain_id}`).put(values.image)
-              .then ( () => {
+            .then(() => {
+              app.storage().ref('images').child(contract.blockchain_id).getDownloadURL()
+              .then ( (url) => {
                 dispatch({
                   type: 'CREATE_CONTRACT',
                   payload: {
                     contract: contract,
-                    currentUser: currentUser
+                    currentUser: currentUser,
+                    url: url
                   }
                 })
                 history.push(`/contracts/${contract.blockchain_id}`)
               })
+            })
           })
         } else {
           res.json()
